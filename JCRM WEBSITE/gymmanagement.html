@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JCRM Technology — Gym Management Features</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Fonts: Poppins (headings), Quicksand (cute headers), Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@500;700;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #071026;
+      --bg-2: #07183a;
+      --card-bg: rgba(255,255,255,0.04);
+      --muted: #b9c6ea;
+      --accent1: #7c5cff;
+      --accent2: #00d1ff;
+      --accent3: #ff77c7;
+      --text: #eaf0ff;
+      --radius: 18px;
+      --glass-border: rgba(255,255,255,0.06);
+      --shadow-1: 0 12px 40px rgba(0,0,0,0.6);
+    }
+
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; -webkit-font-smoothing:antialiased;}
+    .page-wrap{min-height:100vh;display:flex;align-items:stretch;justify-content:center;padding:28px;}
+    .container-xl{max-width:1200px;width:100%;}
+
+    .card-glass{
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-1);
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .blob { position:absolute; width:36rem; height:36rem; border-radius:50%; filter: blur(80px); opacity:0.16; pointer-events:none; mix-blend-mode: screen; }
+    .blob.purple{ background: radial-gradient(circle at 30% 30%, rgba(124,92,255,0.95), transparent 40%); left:-18%; top:-20%; }
+    .blob.cyan{ background: radial-gradient(circle at 70% 70%, rgba(0,209,255,0.95), transparent 40%); right:-16%; bottom:-18%; }
+
+    .hero { display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center; min-height:64vh; }
+    @media (max-width:980px){ .hero{ grid-template-columns:1fr; } .hero-right{order:-1} }
+
+    .kicker { font-family: 'Poppins', sans-serif; text-transform:uppercase; color:var(--muted); letter-spacing:0.12em; font-weight:700; font-size:0.78rem; }
+    .hero-title { font-family: 'Quicksand', 'Poppins', sans-serif; font-size:2.4rem; line-height:1.03; font-weight:700; background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip:text; color: transparent; margin:0 0 10px 0; }
+    .hero-sub { color:var(--muted); font-size:1.03rem; margin-bottom:16px; max-width:60ch; }
+
+    .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px; }
+    .btn-primary-cute{ background: linear-gradient(90deg,var(--accent1),var(--accent3)); border: none; color:#06101a; padding:12px 20px; border-radius:999px; font-weight:700; box-shadow: 0 10px 30px rgba(124,92,255,0.14); font-family: 'Poppins', sans-serif; }
+    .btn-ghost{ color:var(--text); border-radius:999px; padding:10px 16px; border:1px solid rgba(255,255,255,0.06); background:transparent; }
+
+    .stats { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+    .stat-pill { background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:8px 12px; border-radius:999px; display:inline-flex; gap:8px; align-items:center; border:1px solid rgba(255,255,255,0.03); font-weight:700; color:var(--text); }
+
+    .hero-right { display:flex; flex-direction:column; gap:14px; align-items:center; justify-content:center; }
+    .device-mock{ width:100%; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); box-shadow: 0 20px 50px rgba(0,0,0,0.6); background:linear-gradient(180deg,#061124,#081a39); padding:6px; }
+    .device-mock img{ display:block; width:100%; height:auto; border-radius:10px; }
+
+    .photo-row { display:flex; gap:10px; width:100%; justify-content:center; margin-top:6px; }
+    .photo-slot { flex:1; min-width:0; max-width:120px; height:76px; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center; border:1px dashed rgba(255,255,255,0.06); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
+    .photo-slot .plus{ font-size:20px; color:var(--muted); }
+
+    section.spec { margin-top:18px; }
+    h2.section-title { font-family:'Poppins', sans-serif; font-size:1.25rem; margin-top:6px; margin-bottom:10px; color:var(--text); }
+    .muted { color:var(--muted); font-size:0.95rem; }
+
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+    @media(max-width:980px){ .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:600px){ .grid-3 { grid-template-columns: 1fr; } }
+
+    .role-card { padding:16px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); }
+    .role-card h5 { margin:0 0 6px 0; font-family: 'Poppins', sans-serif; font-weight:700; color:var(--text); }
+
+    .timeline { padding-left:14px; border-left:2px dashed rgba(255,255,255,0.03); margin-top:8px; }
+    .timeline .step { margin-bottom:16px; padding-left:12px; position:relative; background: linear-gradient(90deg, rgba(255,255,255,0.01), transparent); border-radius:10px; padding:10px 12px; }
+    .timeline .step::before { content:''; position:absolute; left:-11px; top:14px; width:14px; height:14px; border-radius:50%; background: linear-gradient(90deg, var(--accent1), var(--accent2)); box-shadow: 0 6px 18px rgba(124,92,255,0.12); }
+
+    .gallery { display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:12px; }
+    @media(max-width:768px){ .gallery{ grid-template-columns: repeat(2,1fr);} }
+    .gallery img { width:100%; border-radius:12px; display:block; box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+
+    .testimonial { display:flex; gap:12px; align-items:center; padding:14px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.03); }
+    .avatar { width:64px; height:64px; border-radius:12px; overflow:hidden; border:2px solid rgba(255,255,255,0.04); }
+
+    .btn-sm-pill { border-radius:999px; padding:6px 12px; font-weight:600; font-family: 'Poppins', sans-serif; }
+    .back-wrap{ text-align:center; margin-top:22px; }
+    .btn-back { background: linear-gradient(90deg,var(--accent1),var(--accent3)); border:0; color:#06101a; padding:12px 22px; border-radius:999px; font-weight:700; }
+
+    .cute-dot { width:10px; height:10px; border-radius:50%; background: linear-gradient(90deg,var(--accent1),var(--accent3)); display:inline-block; margin-right:8px; vertical-align:middle; }
+
+    @media (max-width:600px){ .hero-title{font-size:1.6rem} .device-mock{ max-height:260px; } }
+  </style>
+</head>
+<body>
+  <div class="blob purple" aria-hidden="true"></div>
+  <div class="blob cyan" aria-hidden="true"></div>
+
+  <div class="page-wrap">
+    <div class="container-xl">
+      <div class="card-glass" data-aos="fade-up">
+
+        <!-- HERO -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <div class="kicker">JCRM Technologies</div>
+            <h1 id="hero-title" class="hero-title">Gym Management Software — <span style="font-weight:800">Features</span></h1>
+            <p class="hero-sub">
+              A complete Gym & Fitness center management platform — member registrations, trainers, workout plans, billing, diet plans, equipment tracking, analytics and secure mobile access for admins, trainers and members.
+            </p>
+
+            <div class="cta-row">
+              <button class="btn-primary-cute"><i class="bi bi-telephone-fill"></i> <a href="contact-us.html">Request Demo(call us)</button></a>
+            </div>
+
+            <div class="stats" aria-hidden="true">
+              <div class="stat-pill"><i class="bi bi-people-fill"></i>&nbsp;<span>Member Management</span></div>
+              <div class="stat-pill"><i class="bi bi-bar-chart-line-fill"></i>&nbsp;<span>Workout Tracking</span></div>
+              <div class="stat-pill"><i class="bi bi-wallet-fill"></i>&nbsp;<span>Subscription & Billing</span></div>
+            </div>
+
+            <div style="margin-top:16px; display:grid; grid-template-columns: repeat(2,1fr); gap:10px; max-width:58ch;">
+              <div class="role-card">
+                <h5>Core Strength</h5>
+                <div class="muted" style="margin-top:6px;">Member lifecycle, trainer coordination and integrated payment + analytics for gyms and studios.</div>
+              </div>
+              <div class="role-card">
+                <h5>Deployment</h5>
+                <div class="muted" style="margin-top:6px;">Cloud-hosted or self-hosted; role-based access for Admin, Trainer, Front Desk and Accountant.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="device-mock" role="img" aria-label="Gym dashboard mockup">
+              <!-- screenshot placeholder - replace with actual -->
+              <img src="gym management s.jpg" alt="Gym Dashboard">
+            </div>
+
+            <div class="photo-row" aria-hidden="true">
+              <div class="photo-slot" title="Member profile">
+                <div class="plus"><i class="bi bi-person-badge-fill"></i></div>
+              </div>
+              <div class="photo-slot" title="Workout plan">
+                <div class="plus"><i class="bi bi-heart-pulse-fill"></i></div>
+              </div>
+              <div class="photo-slot" title="Billing & subscriptions">
+                <div class="plus"><i class="bi bi-receipt-cutoff"></i></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Wave -->
+        <svg class="wave" viewBox="0 0 1200 80" preserveAspectRatio="none" style="margin-top:6px;"><path d="M0,20 C200,80 400,0 600,30 C800,60 1000,0 1200,28 L1200,120 L0,120 Z" fill="rgba(124,92,255,0.04)"></path></svg>
+
+        <!-- Features overview -->
+        <section class="spec" aria-labelledby="features" data-aos="fade-up">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <div class="kicker">Features</div>
+              <h2 id="features" class="section-title">Gym Management Modules</h2>
+              <p class="muted" style="max-width:60ch">Complete feature set to run a fitness center efficiently — membership operations, trainer & class management, billing, nutrition, equipment, analytics and secure multi-platform access.</p>
+            </div>
+          </div>
+
+          <!-- Detailed list -->
+          <div style="margin-top:14px;">
+            <!-- 1 Member Management -->
+            <div class="role-card mb-3">
+              <h5>1. Member Management</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Member registration & profile creation</li>
+                <li>• Track membership type, start/end dates</li>
+                <li>• Health metrics: weight, BMI, fitness goals</li>
+                <li>• Attendance tracking & check-in/out</li>
+              </ul>
+            </div>
+
+            <!-- 2 Trainer & Staff Management -->
+            <div class="role-card mb-3">
+              <h5>2. Trainer & Staff Management</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Trainer profiles & specialization</li>
+                <li>• Staff scheduling & shift management</li>
+                <li>• Performance tracking & payroll management</li>
+                <li>• Role-based access (Admin, Trainer, Front Desk, Accountant)</li>
+              </ul>
+            </div>
+
+            <!-- 3 Workout & Training Management -->
+            <div class="role-card mb-3">
+              <h5>3. Workout & Training Management</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Personalized workout plans for members</li>
+                <li>• Group classes and session scheduling</li>
+                <li>• Progress tracking for workouts & goals</li>
+                <li>• Video tutorials & exercise demos</li>
+              </ul>
+            </div>
+
+            <!-- 4 Subscription & Billing -->
+            <div class="role-card mb-3">
+              <h5>4. Subscription & Billing</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Membership plans (monthly, quarterly, yearly)</li>
+                <li>• Automated billing & reminders</li>
+                <li>• Discounts, promotions, and loyalty programs</li>
+                <li>• Payment gateway integration (Card, UPI, Wallet, COD)</li>
+              </ul>
+            </div>
+
+            <!-- 5 Diet & Nutrition -->
+            <div class="role-card mb-3">
+              <h5>5. Diet & Nutrition</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Custom diet plans for members</li>
+                <li>• Track nutrition goals & intake</li>
+                <li>• Integration with fitness tracking apps</li>
+              </ul>
+            </div>
+
+            <!-- 6 Equipment & Facility Management -->
+            <div class="role-card mb-3">
+              <h5>6. Equipment & Facility Management</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Inventory tracking of gym equipment</li>
+                <li>• Maintenance scheduling and alerts</li>
+                <li>• Room/space booking for classes</li>
+              </ul>
+            </div>
+
+            <!-- 7 Reporting & Analytics -->
+            <div class="role-card mb-3">
+              <h5>7. Reporting & Analytics</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Membership statistics & growth trends</li>
+                <li>• Trainer performance reports</li>
+                <li>• Attendance & revenue reports</li>
+                <li>• Analytics for class popularity & member engagement</li>
+              </ul>
+            </div>
+
+            <!-- 8 Communication & Notifications -->
+            <div class="role-card mb-3">
+              <h5>8. Communication & Notifications</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• SMS/Email notifications for membership renewals</li>
+                <li>• Alerts for upcoming classes</li>
+                <li>• Feedback collection from members</li>
+              </ul>
+            </div>
+
+            <!-- 9 AI & Automation Features -->
+            <div class="role-card mb-3">
+              <h5>9. AI & Automation Features</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• AI-powered workout recommendations based on member goals</li>
+                <li>• Predictive analytics for membership churn</li>
+                <li>• Automated reminders for workouts, diet plans, and renewals</li>
+                <li>• Chatbot for member queries & support</li>
+              </ul>
+            </div>
+
+            <!-- 10 Security & Compliance -->
+            <div class="role-card mb-3">
+              <h5>10. Security & Compliance</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Role-based access control</li>
+                <li>• Secure data storage & backups</li>
+                <li>• GDPR / HIPAA compliance (if storing health info)</li>
+                <li>• Audit logs for actions</li>
+              </ul>
+            </div>
+
+            <!-- 11 Mobile & Web Access -->
+            <div class="role-card mb-3">
+              <h5>11. Mobile & Web Access</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Mobile app for members to track workouts & classes</li>
+                <li>• Trainer app for scheduling & progress tracking</li>
+                <li>• Admin web dashboard for complete management</li>
+                <li>• Push notifications & alerts</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="spec" data-aos="fade-up">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="kicker">Visuals</div>
+              <h2 class="section-title">Gallery</h2>
+              <p class="muted">Dashboard, Member Profile, Class Calendar, Workout Plan and Billing preview.</p>
+            </div>
+          </div>
+
+          <div class="gallery">
+            <img src="gym gallery 1.jpg" alt="Member Profile">
+            <img src="gym gallery 2.jpg" alt="Calendar">
+            <img src="gym gallery 3.jpg" alt="Analytics">
+          </div>
+        </section>
+
+        <!-- Onboarding / Workflow -->
+        <section class="spec" data-aos="fade-up">
+          <div class="kicker">Member Onboarding</div>
+          <h2 class="section-title">Onboarding & Workflows</h2>
+
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:18px">
+            <div>
+              <div class="timeline">
+                <div class="step">
+                  <strong>1) Registration & Profile</strong>
+                  <div class="muted">Capture member details, photo, contact, medical conditions and membership preferences.</div>
+                </div>
+
+                <div class="step">
+                  <strong>2) Assessment & Plan</strong>
+                  <div class="muted">Initial fitness assessment, goals, and assign workout & diet plans.</div>
+                </div>
+
+                <div class="step">
+                  <strong>3) Scheduling & Attendance</strong>
+                  <div class="muted">Book classes, schedule personal training sessions and track attendance.</div>
+                </div>
+
+                <div class="step">
+                  <strong>4) Billing & Renewals</strong>
+                  <div class="muted">Automated invoicing, reminders and promotions applied at renewal.</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="role-card">
+                <h5>Communication Flow</h5>
+                <div class="muted" style="margin-top:6px;">Automated SMS/email for onboarding, class reminders, promotions and feedback collection.</div>
+              </div>
+
+              <div class="role-card" style="margin-top:12px;">
+                <h5>Integrations</h5>
+                <div class="muted" style="margin-top:6px;">Payment gateways, fitness trackers, nutrition apps and calendar sync for a unified experience.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+       <div class="back-wrap">
+              <!-- Change href to your home/dashboard URL (e.g., '/dashboard' or 'home.html') -->
+              <a class="btn-back" href="index.html" id="backToDashboard"><i class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 700, once: true });
+  </script>
+</body>
+</html>

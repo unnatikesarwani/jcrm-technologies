@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LMS — Full Feature Specification</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Fonts: Poppins (headings), Quicksand (cute headers), Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@500;700;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #071026;
+      --bg-2: #07183a;
+      --card-bg: rgba(255,255,255,0.04);
+      --muted: #b9c6ea;
+      --accent1: #7c5cff;
+      --accent2: #00d1ff;
+      --accent3: #ff77c7; /* soft pink for cute accents */
+      --text: #eaf0ff;
+      --radius: 18px;
+      --glass-border: rgba(255,255,255,0.06);
+      --shadow-1: 0 12px 40px rgba(0,0,0,0.6);
+    }
+
+    /* ---------- Page baseline & full viewport ---------- */
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; -webkit-font-smoothing:antialiased; }
+    .page-wrap{min-height:100vh;display:flex;align-items:stretch;justify-content:center;padding:28px;}
+
+    /* center container width */
+    .container-xl{max-width:1200px;width:100%;}
+
+    /* ---------- Card / surface ---------- */
+    .card-glass{
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-1);
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    /* ---------- playful blobs ---------- */
+    .blob {
+      position: absolute; width:36rem; height:36rem; border-radius:50%; filter: blur(80px); opacity:0.18; pointer-events:none;
+      transform: translate3d(0,0,0);
+      mix-blend-mode: screen;
+    }
+    .blob.purple{ background: radial-gradient(circle at 30% 30%, rgba(124,92,255,0.95), transparent 40%); left:-18%; top:-20%; }
+    .blob.cyan{ background: radial-gradient(circle at 70% 70%, rgba(0,209,255,0.95), transparent 40%); right:-16%; bottom:-18%; }
+
+    /* ---------- header / hero ---------- */
+    .hero {
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:28px;
+      align-items:center;
+      min-height:74vh;
+    }
+    @media (max-width:980px){ .hero{ grid-template-columns: 1fr; padding-bottom: 10px;} .hero-right{order:-1} }
+
+    .hero-title {
+      font-family: 'Quicksand', 'Poppins', sans-serif;
+      font-size:2.6rem;
+      line-height:1.03;
+      font-weight:700;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip:text; color: transparent;
+      margin:0 0 10px 0;
+      letter-spacing:-0.6px;
+    }
+    .hero-sub {
+      color:var(--muted);
+      font-size:1.05rem;
+      margin-bottom:16px;
+      max-width:60ch;
+    }
+
+    .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px; }
+    .btn-primary-cute{
+      background: linear-gradient(90deg,var(--accent1),var(--accent3));
+      border: none; color:#06101a; padding:12px 20px; border-radius:999px; font-weight:700;
+      box-shadow: 0 10px 30px rgba(124,92,255,0.14);
+      font-family: 'Poppins', sans-serif;
+    }
+    .btn-ghost { color:var(--text); border-radius:999px; padding:10px 16px; border:1px solid rgba(255,255,255,0.06); background:transparent; }
+
+    /* ---------- device mock + photo slots ---------- */
+    .hero-right { display:flex; flex-direction:column; gap:14px; align-items:center; justify-content:center; }
+    .device-mock{ width:100%; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); box-shadow: 0 20px 50px rgba(0,0,0,0.6); background:linear-gradient(180deg,#061124,#081a39); padding:6px; }
+    .device-mock img{ display:block; width:100%; height:auto; border-radius:10px; }
+
+    .photo-row { display:flex; gap:10px; width:100%; justify-content:center; margin-top:6px; }
+    .photo-slot {
+      flex:1; min-width:0; max-width:120px; height:76px; border-radius:12px; overflow:hidden;
+      display:flex; align-items:center; justify-content:center; border:1px dashed rgba(255,255,255,0.06);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    }
+    .photo-slot .plus{ font-size:20px; color:var(--muted); }
+
+    /* ---------- cute badges and stats ---------- */
+    .stats { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+    .stat-pill { background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:8px 12px; border-radius:999px; display:inline-flex; gap:8px; align-items:center; border:1px solid rgba(255,255,255,0.03); font-weight:700; font-family: 'Poppins', sans-serif; color:var(--text); }
+
+    /* ---------- content sections (cards) ---------- */
+    section.spec { margin-top:18px; }
+    .kicker { font-family: 'Poppins', sans-serif; text-transform:uppercase; color:var(--muted); letter-spacing:0.12em; font-weight:700; font-size:0.78rem; }
+    h2.section-title { font-family:'Poppins', sans-serif; font-size:1.25rem; margin-top:6px; margin-bottom:10px; color:var(--text); }
+
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+    @media(max-width:980px){ .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:600px){ .grid-3 { grid-template-columns: 1fr; } }
+
+    .role-card { padding:16px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); }
+    .role-card h5 { margin:0 0 6px 0; font-family: 'Poppins', sans-serif; font-weight:700; color:var(--text); }
+    .muted { color:var(--muted); font-size:0.95rem; }
+
+    /* timeline / steps slightly rounded & cute */
+    .timeline { padding-left:14px; border-left:2px dashed rgba(255,255,255,0.03); margin-top:8px; }
+    .timeline .step { margin-bottom:16px; padding-left:12px; position:relative; background: linear-gradient(90deg, rgba(255,255,255,0.01), transparent); border-radius:10px; padding:10px 12px; }
+    .timeline .step::before { content:''; position:absolute; left:-11px; top:14px; width:14px; height:14px; border-radius:50%; background: linear-gradient(90deg, var(--accent1), var(--accent2)); box-shadow: 0 6px 18px rgba(124,92,255,0.12); }
+
+    /* gallery grid cuter (rounded) */
+    .gallery { display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:12px; }
+    @media(max-width:768px){ .gallery{ grid-template-columns: repeat(2,1fr);} }
+    .gallery img { width:100%; border-radius:12px; display:block; box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+
+    /* testimonial bubble */
+    .testimonial { display:flex; gap:12px; align-items:center; padding:14px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.03); }
+    .avatar { width:64px; height:64px; border-radius:12px; overflow:hidden; border:2px solid rgba(255,255,255,0.04); }
+
+    /* buttons and small tweaks */
+    .btn-sm-pill { border-radius:999px; padding:6px 12px; font-weight:600; font-family: 'Poppins', sans-serif; }
+    pre { background: rgba(0,0,0,0.08); padding:10px; border-radius:10px; color:var(--muted); overflow:auto; }
+
+    /* footer */
+    .back-wrap{ text-align:center; margin-top:22px; }
+    .btn-back { background: linear-gradient(90deg,var(--accent1),var(--accent3)); border:0; color:#06101a; padding:12px 22px; border-radius:999px; font-weight:700; }
+
+    /* tiny playful icon dot */
+    .cute-dot { width:10px; height:10px; border-radius:50%; background: linear-gradient(90deg,var(--accent1),var(--accent3)); display:inline-block; margin-right:8px; vertical-align:middle; }
+
+    /* responsive text balance */
+    @media (max-width:600px){
+      .hero-title{font-size:1.6rem}
+      .device-mock{ max-height:260px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- decorative blobs -->
+  <div class="blob purple" aria-hidden="true"></div>
+  <div class="blob cyan" aria-hidden="true"></div>
+
+  <div class="page-wrap">
+    <div class="container-xl">
+
+      <div class="card-glass" data-aos="fade-up">
+
+        <!-- HERO: full-page feel -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <div class="kicker">JCRM Technologies</div>
+            <h1 id="hero-title" class="hero-title">Learning Management Software — <span style="font-weight:800">Product Specification</span></h1>
+            <p class="hero-sub">
+              A <strong style="font-weight:700">modern</strong>, <strong style="font-weight:700">secure</strong> LMS for schools, colleges and training centres — course delivery, live classes, assessments, analytics and smooth onboarding.
+            </p>
+
+            <div class="cta-row">
+              <button class="btn-primary-cute"><i class="bi bi-telephone-fill"></i> <a href="contact-us.html">Request Demo(call us)</button></a>
+            </div>
+
+            <div class="stats" aria-hidden="true">
+              
+              <div class="stat-pill"><i class="bi bi-book-fill"></i>&nbsp;<span>120+ Courses</span></div>
+              <div class="stat-pill"><i class="bi bi-people-fill"></i>&nbsp;<span>10k+ Students</span></div>
+              <div class="stat-pill"><i class="bi bi-award-fill"></i>&nbsp;<span>Certificates</span></div>
+            </div>
+
+            <!-- small features row (cute font balance) -->
+            <div class="features" aria-hidden="true" style="margin-top:18px;">
+              <div class="feature">
+                <div class="ico"><i class="bi bi-camera-reels-fill"></i></div>
+                <div><strong>Video Lessons</strong><div class="muted">Adaptive streaming, captions</div></div>
+              </div>
+              <div class="feature">
+                <div class="ico"><i class="bi bi-journal-check"></i></div>
+                <div><strong>Assessments</strong><div class="muted">Auto grading & rubrics</div></div>
+              </div>
+              <div class="feature">
+                <div class="ico"><i class="bi bi-bar-chart-line-fill"></i></div>
+                <div><strong>Analytics</strong><div class="muted">Reports & progress</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- right column: device mock + photo slots -->
+          <div class="hero-right">
+            <div class="device-mock" role="img" aria-label="LMS dashboard mockup">
+              <!-- Replace with real screenshot -->
+              
+               <div class="hero-right">
+            <div class="device-mock" role="img" aria-label="HMS dashboard mockup">
+              <img src="learning management s.jpg" alt="HMS Dashboard">
+            </div>
+
+            <div class="photo-row" aria-hidden="true">
+              <div class="photo-slot" title="Add course screenshot">
+                <div class="plus"><i class="bi bi-image"></i></div>
+              </div>
+              <div class="photo-slot" title="Add analytics screenshot">
+                <div class="plus"><i class="bi bi-graph-up"></i></div>
+              </div>
+              <div class="photo-slot" title="Add mobile preview">
+                <div class="plus"><i class="bi bi-phone"></i></div>
+              </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Wave divider (cute) -->
+        <svg class="wave" viewBox="0 0 1200 80" preserveAspectRatio="none" style="margin-top:6px;"><path d="M0,20 C200,80 400,0 600,30 C800,60 1000,0 1200,28 L1200,120 L0,120 Z" fill="rgba(124,92,255,0.04)"></path></svg>
+
+        <!-- Featured Courses / Gallery -->
+        <section class="spec" aria-labelledby="featured-courses" data-aos="fade-up">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="kicker">Featured</div>
+              <h2 id="featured-courses" class="section-title">Featured courses</h2>
+              <p class="muted" style="max-width:60ch">Showcase popular courses, live session previews, and certificate.</p>
+            </div>
+          
+            <div class="courses" style="margin-top:14px">
+            <div class="course">
+              <div style="margin-top:10px"><strong>Full Stack Development</strong><div class="muted">38 lessons • Includes projects</div></div>
+            </div>
+
+            <div class="course">
+              <div style="margin-top:10px"><strong>Data Science & ML</strong><div class="muted">24 lessons • Hands-on</div></div>
+            </div>
+
+            <div class="course">
+              <div style="margin-top:10px"><strong>Digital Marketing</strong><div class="muted">20 lessons • Certification</div></div>
+            </div>
+          </div>
+
+          <div class="gallery" aria-hidden="true" style="margin-top:14px">
+            <img src="lms gallery 1.jpg" alt="Live class preview">
+            <img src="lms gallery 2.jpg" alt="Assignment view">
+            <img src="lms gallery 3.jpg" alt="Certificate preview">
+          </div>
+        </section>
+
+       
+
+        <!-- Quick Summary (original content preserved; some bolding for balance) -->
+        <section class="spec" data-aos="fade-up" style="margin-top:20px;">
+          <div class="kicker">1) Quick Summary</div>
+          <h2 class="section-title">Overview</h2>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <div class="role-card d-flex align-items-start">
+                <div style="margin-right:12px"><span class="cute-dot"></span></div>
+                <div>
+                  <h5 style="margin:0 0 6px 0;">Purpose</h5>
+                  <ul style="list-style:none;padding:0;margin:0;color:var(--text)">
+                    <li>• <strong>Deliver a scalable LMS</strong> for schools, colleges, and training providers.</li>
+                    <li>• Modern course delivery, assessments, grading, messaging, analytics, integrations, and strong security.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="role-card d-flex align-items-start">
+                <div style="margin-right:12px"><i class="bi bi-people-fill" style="font-size:22px;color:var(--muted)"></i></div>
+                <div>
+                  <h5 style="margin:0 0 6px 0;">Key Roles</h5>
+                  <ul style="list-style:none;padding:0;margin:0;color:var(--text)">
+                    <li>• Student</li>
+                    <li>• Instructor</li>
+                    <li>• Admin</li>
+                    <li>• Optional: Parent, Reviewer, Finance</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Roles & Permissions (detailed) -->
+        <section class="spec" data-aos="fade-up" style="margin-top:18px;">
+          <div class="kicker">2) User Roles & Permissions</div>
+          <h2 class="section-title">Roles & Permissions (Detailed)</h2>
+          <p class="muted">Role descriptions including primary capabilities and responsibilities.</p>
+
+          <div class="grid-3 mt-3">
+            <div class="role-card">
+              <h5>Student</h5>
+              <div class="muted small">Core capabilities:</div>
+              <ul style="margin-top:8px;color:var(--text)">
+                <li>• Enrolls, learns, submits assignments, takes exams, tracks progress, pays fees.</li>
+                <li>• View course materials, progress dashboard, and certificates.</li>
+              </ul>
+            </div>
+
+            <div class="role-card">
+              <h5>Instructor</h5>
+              <div class="muted small">Core capabilities:</div>
+              <ul style="margin-top:8px;color:var(--text)">
+                <li>• Creates courses, uploads content (video/docs), schedules live sessions, grades & provides feedback.</li>
+                <li>• Manage assignments, announcements, and student interactions.</li>
+              </ul>
+            </div>
+
+            <div class="role-card">
+              <h5>Admin</h5>
+              <div class="muted small">Core capabilities:</div>
+              <ul style="margin-top:8px;color:var(--text)">
+                <li>• Manages catalog, users, roles, finances, integrations, compliance, and reports.</li>
+                <li>• Site settings, permissions, audit logs, and platform integrations.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Registration flow & email templates -->
+        <section class="spec" data-aos="fade-up" style="margin-top:18px;">
+          <div class="kicker">3) Student Registration & Email Workflow</div>
+          <h2 class="section-title">Detailed Registration Flow</h2>
+
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:18px">
+            <div>
+              <h5 style="font-family:'Poppins',sans-serif">3.1 Web Registration Steps</h5>
+              <div class="timeline">
+                <div class="step">
+                  <strong>1) Student visits registration form</strong>
+                  <div class="muted">Fields: First Name, Last Name, Email, Mobile (OTP), Country, Preferred Language, Password (or set later), Consent checkboxes (ToS/Privacy).</div>
+                </div>
+
+                <div class="step">
+                  <strong>2) Validation</strong>
+                  <div class="muted">Email uniqueness, mobile OTP verification, password strength, captcha / rate limiting.</div>
+                </div>
+
+                <div class="step">
+                  <strong>3) Account creation</strong>
+                  <div class="muted">Create user record, default Student role, status → Pending-Verification; email verification required until confirmed.</div>
+                </div>
+
+                <div class="step">
+                  <strong>4) Email verification link</strong>
+                  <div class="muted">On click: status → Active; login permitted. Consider single-use links and expiry windows.</div>
+                </div>
+
+                <div class="step">
+                  <strong>5) Optional auto-enroll</strong>
+                  <div class="muted">Auto-enroll into a starter course; show welcome checklist on first login for a guided experience.</div>
+                </div>
+              </div>
+
+              <p class="muted" style="margin-top:8px"><strong>Security Note:</strong> Avoid emailing plain-text passwords. Prefer secure set-password links with expiry. If a temporary password is required, force change at first login and do not store temporary passwords unencrypted.</p>
+            </div>
+
+            <div>
+              <div class="role-card" style="height:100%;">
+                <h5>What gets verified?</h5>
+                <ul class="muted" style="margin-top:6px;color:var(--text)">
+                  <li>• Email ownership via signed link (24h recommended expiry).</li>
+                  <li>• Mobile number via OTP (rate-limited, anti-abuse).</li>
+                  <li>• CAPTCHA & IP/rate-limits to prevent automated signups.</li>
+                  <li>• Password policy: minimum length, complexity, breach-checks (optional) and secure storage (bcrypt/argon2).</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Email templates -->
+          <div style="margin-top:14px">
+            <h5 style="font-family:'Poppins',sans-serif">3.2 Email Templates (Transactional)</h5>
+            <div style="margin-top:8px" class="role-card">
+              <div style="margin-bottom:8px;"><strong>A) Registration Verification (Recommended)</strong></div>
+              <div><strong>Subject:</strong> Verify your LMS account</div>
+              <div><strong>Body:</strong> Hi {first_name}, thanks for registering at {site_name}. Please verify your email within 24 hours: {verification_link}</div>
+              <hr style="border-color:rgba(255,255,255,0.03)" />
+              <div style="margin-bottom:8px;"><strong>B) Welcome + Set Password (Recommended)</strong></div>
+              <div><strong>Subject:</strong> Welcome to {site_name} — set your password</div>
+              <div><strong>Body:</strong> Hi {first_name}, create your password using this secure link (valid for 24 hours): {set_password_link}</div>
+              <hr style="border-color:rgba(255,255,255,0.03)" />
+              <div style="margin-bottom:8px;"><strong>C) Welcome + Temporary Password (Not Recommended)</strong></div>
+              <div><strong>Subject:</strong> Your {site_name} account details</div>
+              <div><strong>Body:</strong> Hi {first_name}, your login email is {email}. Temporary password: {temp_password}. For security, you must change it on first login.</div>
+              <hr style="border-color:rgba(255,255,255,0.03)" />
+              <div style="margin-bottom:8px;"><strong>D) Password Reset</strong></div>
+              <div><strong>Subject:</strong> Reset your password</div>
+              <div><strong>Body:</strong> Click to reset your password (valid 30 minutes): {reset_link}</div>
+              <hr style="border-color:rgba(255,255,255,0.03)" />
+              <div style="margin-bottom:8px;"><strong>E) Enrollment Confirmation</strong></div>
+              <div><strong>Subject:</strong> You're enrolled in {course_title}</div>
+              <div><strong>Body:</strong> Start learning now: {course_link} • Start date: {start_date}</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Screenshots & Media (cute photo sections) -->
+        <section class="spec" data-aos="fade-up" style="margin-top:18px;">
+          <div class="d-flex align-items-center justify-content-between">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:12px">
+            <div class="role-card">
+              <h5>Product Gallery</h5>
+              <p class="muted">Upload multiple screenshots or marketing images — grid auto-fits and looks cute with rounded corners.</p>
+              <div class="gallery" style="margin-top:8px">
+                <img src="LMS COURSE PAGE.jpeg" alt="Course page">
+                <img src="LMS ANALYTICS.jpeg" alt="Analytics">
+                <img src="LMS DATASCIENCE.jpeg" alt="DATA Science">
+                <img src="LMS DIGITAL MARKETING.jpeg" alt="DIGIROOMS MOBILE ">
+                <img src="LMS STUDY S.jpeg" alt="STUDY">
+                <img src="LMS STUDENT.jpg" alt="WORK">
+              </div>
+            </div>
+
+            <div class="role-card" style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+              <h5>Feature Spotlight</h5>
+              <div style="background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:10px; border-radius:12px;">
+                <img src="LMS FULLSTACK.webp" alt="spotlight" style="width:100%;border-radius:10px">
+          </div>
+        </section>
+
+        <!-- Appendix -->
+        <section class="spec" data-aos="fade-up" style="margin-top:18px;">
+          <div class="kicker">Appendix</div>
+          <h2 class="section-title">Implementation Notes</h2>
+
+          <div class="role-card" style="margin-top:8px">
+            <ul style="color:var(--text)">
+              <li>• <strong>UX:</strong> Show clear success & error states during registration and OTP flows. Use progressive enhancement and preserve form state on validation errors.</li>
+              <li>• <strong>Security:</strong> Enforce password policy, use rate-limiting, CAPTCHA, multi-factor where needed, and store secrets securely (bcrypt/argon2 for passwords).</li>
+              <li>• <strong>Emails:</strong> Deploy DKIM/SPF/DMARC, template localization, transactional logs, and monitor deliverability & bounce rates.</li>
+              <li>• <strong>Data:</strong> Store minimal PII. Encrypt sensitive fields; provide data export & delete options to support compliance (GDPR / local laws).</li>
+              <li>• <strong>Accessibility:</strong> Ensure forms are keyboard navigable, use ARIA attributes where required, color contrast and readable font sizes.</li>
+            </ul>
+
+            <div style="margin-top:12px">
+              <h5>Quick developer checklist</h5>
+              <pre>- Use HTTPS everywhere
+- Implement email verification flow (signed tokens, expiry)
+- Implement mobile OTP with rate-limits
+- Log important security events (login, password reset)
+- Use content delivery for large assets (videos)
+- Monitor and alert on delivery, error rates & performance</pre>
+            </div>
+          </div>
+        </section>
+
+        <div class="back-wrap">
+              <!-- Change href to your home/dashboard URL (e.g., '/dashboard' or 'home.html') -->
+              <a class="btn-back" href="index.html" id="backToDashboard"><i class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+            </div>
+          </div>
+        </section>
+
+      </div> <!-- card-glass -->
+    </div> <!-- container -->
+  </div> <!-- page-wrap -->
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 650, offset: 80 });
+
+    // Small helper: click any placeholder to replace image (non-functional demo)
+    document.querySelectorAll('.photo-slot, .gallery img, .device-mock img').forEach(el=>{
+      el.addEventListener('click', ()=> {
+        alert('This is a placeholder. Replace the image src attribute with your screenshot or drag & drop in your editor.');
+      });
+    });
+  </script>
+</body>
+</html>

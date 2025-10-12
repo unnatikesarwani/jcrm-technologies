@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fraud Detection & Management — Feature Specification</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Fonts: Poppins (headings), Quicksand (cute headers), Inter (body) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@500;700;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #071026;
+      --bg-2: #07183a;
+      --card-bg: rgba(255,255,255,0.04);
+      --muted: #b9c6ea;
+      --accent1: #7c5cff;
+      --accent2: #00d1ff;
+      --accent3: #ff77c7;
+      --text: #eaf0ff;
+      --radius: 18px;
+      --glass-border: rgba(255,255,255,0.06);
+      --shadow-1: 0 12px 40px rgba(0,0,0,0.6);
+    }
+
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; -webkit-font-smoothing:antialiased;}
+    .page-wrap{min-height:100vh;display:flex;align-items:stretch;justify-content:center;padding:28px;}
+    .container-xl{max-width:1200px;width:100%;}
+
+    .card-glass{
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-1);
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .blob { position:absolute; width:36rem; height:36rem; border-radius:50%; filter: blur(80px); opacity:0.16; pointer-events:none; mix-blend-mode: screen; }
+    .blob.purple{ background: radial-gradient(circle at 30% 30%, rgba(124,92,255,0.95), transparent 40%); left:-18%; top:-20%; }
+    .blob.cyan{ background: radial-gradient(circle at 70% 70%, rgba(0,209,255,0.95), transparent 40%); right:-16%; bottom:-18%; }
+
+    .hero { display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center; min-height:64vh; }
+    @media (max-width:980px){ .hero{ grid-template-columns:1fr; } .hero-right{order:-1} }
+
+    .kicker { font-family: 'Poppins', sans-serif; text-transform:uppercase; color:var(--muted); letter-spacing:0.12em; font-weight:700; font-size:0.78rem; }
+    .hero-title { font-family: 'Quicksand', 'Poppins', sans-serif; font-size:2.4rem; line-height:1.03; font-weight:700; background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip:text; color: transparent; margin:0 0 10px 0; }
+    .hero-sub { color:var(--muted); font-size:1.03rem; margin-bottom:16px; max-width:60ch; }
+
+    .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px; }
+    .btn-primary-cute{ background: linear-gradient(90deg,var(--accent1),var(--accent3)); border: none; color:#06101a; padding:12px 20px; border-radius:999px; font-weight:700; box-shadow: 0 10px 30px rgba(124,92,255,0.14); font-family: 'Poppins', sans-serif; }
+    .btn-ghost{ color:var(--text); border-radius:999px; padding:10px 16px; border:1px solid rgba(255,255,255,0.06); background:transparent; }
+
+    .stats { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+    .stat-pill { background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:8px 12px; border-radius:999px; display:inline-flex; gap:8px; align-items:center; border:1px solid rgba(255,255,255,0.03); font-weight:700; color:var(--text); }
+
+    .hero-right { display:flex; flex-direction:column; gap:14px; align-items:center; justify-content:center; }
+    .device-mock{ width:100%; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); box-shadow: 0 20px 50px rgba(0,0,0,0.6); background:linear-gradient(180deg,#061124,#081a39); padding:6px; }
+    .device-mock img{ display:block; width:100%; height:auto; border-radius:10px; }
+
+    .photo-row { display:flex; gap:10px; width:100%; justify-content:center; margin-top:6px; }
+    .photo-slot { flex:1; min-width:0; max-width:120px; height:76px; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center; border:1px dashed rgba(255,255,255,0.06); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
+    .photo-slot .plus{ font-size:20px; color:var(--muted); }
+
+    section.spec { margin-top:18px; }
+    h2.section-title { font-family:'Poppins', sans-serif; font-size:1.25rem; margin-top:6px; margin-bottom:10px; color:var(--text); }
+    .muted { color:var(--muted); font-size:0.95rem; }
+
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+    @media(max-width:980px){ .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:600px){ .grid-3 { grid-template-columns: 1fr; } }
+
+    .role-card { padding:16px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); }
+    .role-card h5 { margin:0 0 6px 0; font-family: 'Poppins', sans-serif; font-weight:700; color:var(--text); }
+
+    .timeline { padding-left:14px; border-left:2px dashed rgba(255,255,255,0.03); margin-top:8px; }
+    .timeline .step { margin-bottom:16px; padding-left:12px; position:relative; background: linear-gradient(90deg, rgba(255,255,255,0.01), transparent); border-radius:10px; padding:10px 12px; }
+    .timeline .step::before { content:''; position:absolute; left:-11px; top:14px; width:14px; height:14px; border-radius:50%; background: linear-gradient(90deg, var(--accent1), var(--accent2)); box-shadow: 0 6px 18px rgba(124,92,255,0.12); }
+
+    .gallery { display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:12px; }
+    @media(max-width:768px){ .gallery{ grid-template-columns: repeat(2,1fr);} }
+    .gallery img { width:100%; border-radius:12px; display:block; box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+
+    .testimonial { display:flex; gap:12px; align-items:center; padding:14px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.03); }
+    .avatar { width:64px; height:64px; border-radius:12px; overflow:hidden; border:2px solid rgba(255,255,255,0.04); }
+
+    .btn-sm-pill { border-radius:999px; padding:6px 12px; font-weight:600; font-family: 'Poppins', sans-serif; }
+    .back-wrap{ text-align:center; margin-top:22px; }
+    .btn-back { background: linear-gradient(90deg,var(--accent1),var(--accent3)); border:0; color:#06101a; padding:12px 22px; border-radius:999px; font-weight:700; }
+
+    .cute-dot { width:10px; height:10px; border-radius:50%; background: linear-gradient(90deg,var(--accent1),var(--accent3)); display:inline-block; margin-right:8px; vertical-align:middle; }
+
+    @media (max-width:600px){ .hero-title{font-size:1.6rem} .device-mock{ max-height:260px; } }
+  </style>
+</head>
+<body>
+  <div class="blob purple" aria-hidden="true"></div>
+  <div class="blob cyan" aria-hidden="true"></div>
+
+  <div class="page-wrap">
+    <div class="container-xl">
+      <div class="card-glass" data-aos="fade-up">
+
+        <!-- HERO -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <div class="kicker">JCRM Technologies</div>
+            <h1 id="hero-title" class="hero-title">Fraud Detection & Management — <span style="font-weight:800">Product Specification</span></h1>
+            <p class="hero-sub">
+              Real-time fraud detection, automated alerts, investigator workflows and model lifecycle management — built to detect, investigate and reduce fraud across payments, accounts and transactions.
+            </p>
+
+            <div class="cta-row">
+              <button class="btn-primary-cute"><i class="bi bi-telephone-fill"></i> <a href="contact-us.html">Request Demo(call us)</button></a>
+            </div>
+
+            <div class="stats" aria-hidden="true">
+              <div class="stat-pill"><i class="bi bi-bolt-fill"></i>&nbsp;<span>Real-time Rules</span></div>
+              <div class="stat-pill"><i class="bi bi-graph-up"></i>&nbsp;<span>Risk Scoring</span></div>
+              <div class="stat-pill"><i class="bi bi-people-fill"></i>&nbsp;<span>Case Management</span></div>
+            </div>
+
+            <div style="margin-top:16px; display:grid; grid-template-columns: repeat(2,1fr); gap:10px; max-width:58ch;">
+              <div class="role-card">
+                <h5>Primary Goal</h5>
+                <div class="muted" style="margin-top:6px;">Detect & stop fraud quickly while minimizing false positives and preserving legitimate customer experience.</div>
+              </div>
+              <div class="role-card">
+                <h5>Deployment</h5>
+                <div class="muted" style="margin-top:6px;">Cloud-native streaming pipelines with low-latency scoring and optional on-prem connectors for sensitive environments.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="device-mock" role="img" aria-label="Fraud dashboard mockup">
+              <img src="fraud detection s.jpg" alt="Fraud Dashboard">
+            </div>
+
+            <div class="photo-row" aria-hidden="true">
+              <div class="photo-slot" title="Alert queue">
+                <div class="plus"><i class="bi bi-exclamation-triangle-fill"></i></div>
+              </div>
+              <div class="photo-slot" title="Link analysis">
+                <div class="plus"><i class="bi bi-link-45deg"></i></div>
+              </div>
+              <div class="photo-slot" title="Case timeline">
+                <div class="plus"><i class="bi bi-journal-text"></i></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Wave -->
+        <svg class="wave" viewBox="0 0 1200 80" preserveAspectRatio="none" style="margin-top:6px;"><path d="M0,20 C200,80 400,0 600,30 C800,60 1000,0 1200,28 L1200,120 L0,120 Z" fill="rgba(124,92,255,0.04)"></path></svg>
+
+        <!-- Feature Modules -->
+        <section class="spec" aria-labelledby="features" data-aos="fade-up">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <div class="kicker">Core Modules</div>
+              <h2 id="features" class="section-title">Comprehensive Feature Set</h2>
+              <p class="muted" style="max-width:60ch">Modules designed to ingest, score, investigate and report fraud across channels (payments, accounts, KYC, support) with strong governance and ML ops.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <!-- 1 Data Ingestion & Normalization -->
+            <div class="role-card mb-3">
+              <h5>1. Data Ingestion & Normalization</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Stream & batch connectors (Kafka, S3, webhooks, DB CDC)</li>
+                <li>• Normalization, enrichment (geo/IP/device), and feature store population</li>
+                <li>• PII tokenization, data retention policies and schema registry</li>
+              </ul>
+            </div>
+
+            <!-- 2 Real-time Detection & Rules -->
+            <div class="role-card mb-3">
+              <h5>2. Real-time Detection & Rules</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Low-latency rules engine with boolean & scoring rules</li>
+                <li>• Support for windowed rules (rolling 24h spikes, velocity checks)</li>
+                <li>• Rule versioning, test mode, and staging -> production promotion</li>
+              </ul>
+            </div>
+
+            <!-- 3 Machine Learning Scoring -->
+            <div class="role-card mb-3">
+              <h5>3. Machine Learning Scoring</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Ensemble models: supervised (fraud classifier), unsupervised (anomaly detection)</li>
+                <li>• Real-time feature lookup, model explainability (SHAP/LIME)</li>
+                <li>• Model drift alerts, A/B testing, and automated retraining pipelines</li>
+              </ul>
+            </div>
+
+            <!-- 4. Entity Resolution & Link Analysis -->
+            <div class="role-card mb-3">
+              <h5>4. Entity Resolution & Link Analysis</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Graph database for linking accounts, devices, IPs, emails</li>
+                <li>• Visual link explorer with cluster identification</li>
+                <li>• Watchlist & blacklist propagation across modules</li>
+              </ul>
+            </div>
+
+            <!-- 5. Case Management & Investigator Workflows -->
+            <div class="role-card mb-3">
+              <h5>5. Case Management</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Alert triage queue with bulk actions & prioritization</li>
+                <li>• Case creation, notes, evidence attachments and SLA tracking</li>
+                <li>• Escalation rules, multi-stage workflows, audit trail and handoffs</li>
+              </ul>
+            </div>
+
+            <!-- 6. Alerting & Notification -->
+            <div class="role-card mb-3">
+              <h5>6. Alerting & Notification</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Push alerts to Slack, email, webhook sinks and internal dashboards</li>
+                <li>• Escalation policies and on-call rotation integration</li>
+                <li>• Notification templates for customers & partners (compliant messaging)</li>
+              </ul>
+            </div>
+
+            <!-- 7. Risk Scoring & Decisioning -->
+            <div class="role-card mb-3">
+              <h5>7. Risk Scoring & Decisioning</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Composite risk score: rules + ML + manual signals</li>
+                <li>• Decision engine for allow/challenge/block with TTL & hold queues</li>
+                <li>• Soft-blocks & challenge flows (OTP, KYC, device verification)</li>
+              </ul>
+            </div>
+
+            <!-- 8. Payments & Transaction Monitoring -->
+            <div class="role-card mb-3">
+              <h5>8. Payments & Transaction Monitoring</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Real-time transaction scoring & velocity checks</li>
+                <li>• Refund & chargeback detection, merchant-level risk dashboards</li>
+                <li>• Reconciliation support and automated dispute starter</li>
+              </ul>
+            </div>
+
+            <!-- 9. Reporting & Analytics -->
+            <div class="role-card mb-3">
+              <h5>9. Reporting & Analytics</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• KPI dashboards: fraud rate, precision/recall, time-to-close</li>
+                <li>• Ad-hoc analytics & exportable CSV/PDF reports</li>
+                <li>• Regulatory reporting packets & custom compliance exports</li>
+              </ul>
+            </div>
+
+            <!-- 10. AI & Automation -->
+            <div class="role-card mb-3">
+              <h5>10. AI & Automation</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Automated triage using severity classification</li>
+                <li>• Auto-enrichers (device risk, OSINT checks, sanctions lists)</li>
+                <li>• Chatbot assistant for first-level investigator actions</li>
+              </ul>
+            </div>
+
+            <!-- 11. Security & Compliance -->
+            <div class="role-card mb-3">
+              <h5>11. Security & Compliance</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• RBAC, SSO (SAML/OIDC) and strong session controls</li>
+                <li>• Full audit logs, immutable evidence storage and chain-of-custody</li>
+                <li>• Data masking, PII minimization and regional data residency options</li>
+              </ul>
+            </div>
+
+            <!-- 12. Integrations & APIs -->
+            <div class="role-card mb-3">
+              <h5>12. Integrations & APIs</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Outbound webhooks, REST APIs and SDKs for common platforms</li>
+                <li>• Built-in connectors for payment gateways, KYC vendors, SMS/Email</li>
+                <li>• Partner sandbox and contract testing for safe integration</li>
+              </ul>
+            </div>
+
+            <!-- 13. Mobile & Web Access -->
+            <div class="role-card mb-3">
+              <h5>13. Mobile & Web Access</h5>
+              <ul style="margin-top:8px; color:var(--text);">
+                <li>• Investigator web app: alert queue, case timeline, link explorer</li>
+                <li>• Ops mobile app for urgent alerts and on-call responses</li>
+                <li>• Admin console for rule management, deployments & model ops</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Visuals -->
+        <section class="spec" data-aos="fade-up">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="kicker">Visuals</div>
+              <h2 class="section-title">Gallery</h2>
+              <p class="muted">Alert queue, case view, link graph, risk heatmap and model metrics.</p>
+            </div>
+          </div>
+
+          <div class="gallery">
+            <img src="fraud gallery 1.jpg" alt="Alert Queue">
+            <img src="fraud gallery 2.jpg" alt="Link Analysis">
+            <img src="fraud gallery 3.jpg" alt="Case Timeline">
+          </div>
+        </section>
+
+        <!-- Incident Handling Timeline -->
+        <section class="spec" data-aos="fade-up">
+          <div class="kicker">Investigation Flow</div>
+          <h2 class="section-title">Incident lifecycle — from alert to resolution</h2>
+
+          <div style="display:grid;grid-template-columns:2fr 1fr;gap:18px">
+            <div>
+              <div class="timeline">
+                <div class="step">
+                  <strong>1) Alert generation</strong>
+                  <div class="muted">Rule or model raises an alert; enrichment (IP, geo, device) runs automatically.</div>
+                </div>
+
+                <div class="step">
+                  <strong>2) Triage & prioritization</strong>
+                  <div class="muted">Score-based routing to analysts; high-risk alerts surface first with recommended actions.</div>
+                </div>
+
+                <div class="step">
+                  <strong>3) Investigation</strong>
+                  <div class="muted">Investigator collects evidence, runs link-analysis and records notes & decisions.</div>
+                </div>
+
+                <div class="step">
+                  <strong>4) Action & remediation</strong>
+                  <div class="muted">Block account, revert transaction, notify customer, or escalate to legal/collections.</div>
+                </div>
+
+                <div class="step">
+                  <strong>5) Close & learn</strong>
+                  <div class="muted">Close case with outcome tags; feed labels back to model training set for continuous improvement.</div>
+                </div>
+              </div>
+
+              <p class="muted" style="margin-top:8px"><strong>Best practice:</strong> maintain a feedback loop from closed cases to labeled training data to reduce false positives over time.</p>
+            </div>
+
+            <div>
+              <div class="role-card">
+                <h5>Roles & Responsibilities</h5>
+                <ul class="muted" style="margin-top:6px;color:var(--text)">
+                  <li>• Analyst: triage & initial investigation</li>
+                  <li>• Investigator: deep-dive, evidence collection</li>
+                  <li>• Risk Ops: deploy rules, tune thresholds</li>
+                  <li>• ML Engineer: model lifecycle & drift monitoring</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+        <div class="back-wrap">
+              <!-- Change href to your home/dashboard URL (e.g., '/dashboard' or 'home.html') -->
+              <a class="btn-back" href="index.html" id="backToDashboard"><i class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- AOS & Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script> AOS.init({duration:700,once:true}); </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

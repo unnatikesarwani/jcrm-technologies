@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Full Stack Development Course Outline — Basic</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- AOS (optional for animations) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Fonts: Poppins, Quicksand, Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@500;700;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg-1: #071026;
+      --bg-2: #07183a;
+      --card-bg: rgba(255,255,255,0.04);
+      --muted: #b9c6ea;
+      --accent1: #7c5cff;
+      --accent2: #00d1ff;
+      --accent3: #ff77c7;
+      --text: #eaf0ff;
+      --radius: 18px;
+      --glass-border: rgba(255,255,255,0.06);
+      --shadow-1: 0 12px 40px rgba(0,0,0,0.6);
+    }
+
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; -webkit-font-smoothing:antialiased;}
+    .page-wrap{min-height:100vh;display:flex;align-items:stretch;justify-content:center;padding:28px;}
+    .container-xl{max-width:1100px;width:100%;}
+
+    .card-glass{
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-1);
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .blob { position:absolute; width:36rem; height:36rem; border-radius:50%; filter: blur(80px); opacity:0.16; pointer-events:none; mix-blend-mode: screen; }
+    .blob.purple{ background: radial-gradient(circle at 30% 30%, rgba(124,92,255,0.95), transparent 40%); left:-18%; top:-20%; }
+    .blob.cyan{ background: radial-gradient(circle at 70% 70%, rgba(0,209,255,0.95), transparent 40%); right:-16%; bottom:-18%; }
+
+    .hero { display:grid; grid-template-columns: 1fr 380px; gap:28px; align-items:center; min-height:44vh; }
+    @media (max-width:980px){ .hero{ grid-template-columns:1fr; } .hero-right{order:-1} }
+
+    .kicker { font-family: 'Poppins', sans-serif; text-transform:uppercase; color:var(--muted); letter-spacing:0.12em; font-weight:700; font-size:0.78rem; }
+    .hero-title { font-family: 'Quicksand', 'Poppins', sans-serif; font-size:2.2rem; line-height:1.03; font-weight:700; background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip:text; color: transparent; margin:0 0 10px 0; }
+    .hero-sub { color:var(--muted); font-size:1.03rem; margin-bottom:16px; max-width:60ch; }
+
+    .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px; }
+    .btn-primary-cute{ background: linear-gradient(90deg,var(--accent1),var(--accent3)); border: none; color:#06101a; padding:12px 20px; border-radius:999px; font-weight:700; box-shadow: 0 10px 30px rgba(124,92,255,0.14); font-family: 'Poppins', sans-serif; }
+    .btn-ghost{ color:var(--text); border-radius:999px; padding:10px 16px; border:1px solid rgba(255,255,255,0.06); background:transparent; }
+
+    .stats { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
+    .stat-pill { background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:8px 12px; border-radius:999px; display:inline-flex; gap:8px; align-items:center; border:1px solid rgba(255,255,255,0.03); font-weight:700; color:var(--text); }
+
+    .hero-right { display:flex; flex-direction:column; gap:14px; align-items:center; justify-content:center; }
+    .device-mock{ width:100%; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.04); box-shadow: 0 20px 50px rgba(0,0,0,0.6); background:linear-gradient(180deg,#061124,#081a39); padding:6px; }
+    .device-mock img{ display:block; width:100%; height:auto; border-radius:10px; }
+
+    .photo-row { display:flex; gap:10px; width:100%; justify-content:center; margin-top:6px; }
+    .photo-slot { flex:1; min-width:0; max-width:120px; height:76px; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center; border:1px dashed rgba(255,255,255,0.06); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); }
+    .photo-slot .plus{ font-size:20px; color:var(--muted); }
+
+    section.spec { margin-top:18px; }
+    h2.section-title { font-family:'Poppins', sans-serif; font-size:1.25rem; margin-top:6px; margin-bottom:10px; color:var(--text); }
+    .muted { color:var(--muted); font-size:0.95rem; }
+
+    .grid-3 { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+    @media(max-width:980px){ .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:600px){ .grid-3 { grid-template-columns: 1fr; } }
+
+    .role-card { padding:16px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.03); }
+    .role-card h5 { margin:0 0 6px 0; font-family: 'Poppins', sans-serif; font-weight:700; color:var(--text); }
+
+    .timeline { padding-left:14px; border-left:2px dashed rgba(255,255,255,0.03); margin-top:8px; }
+    .timeline .step { margin-bottom:16px; padding-left:12px; position:relative; background: linear-gradient(90deg, rgba(255,255,255,0.01), transparent); border-radius:10px; padding:10px 12px; }
+    .timeline .step::before { content:''; position:absolute; left:-11px; top:14px; width:14px; height:14px; border-radius:50%; background: linear-gradient(90deg, var(--accent1), var(--accent2)); box-shadow: 0 6px 18px rgba(124,92,255,0.12); }
+
+    .gallery { display:grid; grid-template-columns: repeat(3, 1fr); gap:10px; margin-top:12px; }
+    @media(max-width:768px){ .gallery{ grid-template-columns: repeat(2,1fr);} }
+    .gallery img { width:100%; border-radius:12px; display:block; box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+
+    .testimonial { display:flex; gap:12px; align-items:center; padding:14px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.03); }
+    .avatar { width:64px; height:64px; border-radius:12px; overflow:hidden; border:2px solid rgba(255,255,255,0.04); }
+
+    .btn-sm-pill { border-radius:999px; padding:6px 12px; font-weight:600; font-family: 'Poppins', sans-serif; }
+    .back-wrap{ text-align:center; margin-top:22px; }
+    .btn-back { background: linear-gradient(90deg,var(--accent1),var(--accent3)); border:0; color:#06101a; padding:12px 22px; border-radius:999px; font-weight:700; }
+
+    .cute-dot { width:10px; height:10px; border-radius:50%; background: linear-gradient(90deg,var(--accent1),var(--accent3)); display:inline-block; margin-right:8px; vertical-align:middle; }
+
+    @media (max-width:600px){ .hero-title{font-size:1.6rem} .device-mock{ max-height:260px; } }
+    ul.outline { margin:8px 0 0 18px; color:var(--text); line-height:1.5; }
+    ul.outline li { margin:6px 0; }
+    .mini { font-weight:600; color:var(--muted); font-size:0.92rem; }
+  </style>
+</head>
+<body>
+  <div class="blob purple" aria-hidden="true"></div>
+  <div class="blob cyan" aria-hidden="true"></div>
+
+  <div class="page-wrap">
+    <div class="container-xl">
+      <div class="card-glass" data-aos="fade-up">
+
+        <!-- HERO -->
+        <section class="hero" aria-labelledby="hero-title">
+          <div>
+            <div class="kicker">Course Outline</div>
+            <h1 id="hero-title" class="hero-title">Full Stack Development — <span style="font-weight:800">Basic</span></h1>
+            <p class="hero-sub">
+              A beginner-friendly, practical roadmap to build modern web applications — covers frontend, backend, databases and a live project to apply your skills.
+            </p>
+
+            <div class="cta-row">
+              <button class="btn-primary-cute"><i class="bi bi-journal-richtext"></i> <a href="contact-us.html">Enroll Now</button></a>
+            </div>
+
+            <div class="stats" aria-hidden="true">
+              <div class="stat-pill"><i class="bi bi-laptop"></i>&nbsp;<span>Frontend</span></div>
+              <div class="stat-pill"><i class="bi bi-server"></i>&nbsp;<span>Backend</span></div>
+              <div class="stat-pill"><i class="bi bi-code-slash"></i>&nbsp;<span>Projects</span></div>
+            </div>
+
+            <div style="margin-top:16px; display:grid; grid-template-columns: repeat(2,1fr); gap:10px; max-width:58ch;">
+              <div class="role-card">
+                <h5>Duration & Level</h5>
+                <div class="muted" style="margin-top:6px;">Beginner level — theory + hands-on labs and 1 mini live project to practice CRUD workflows.</div>
+              </div>
+              <div class="role-card">
+                <h5>Tools Covered</h5>
+                <div class="muted" style="margin-top:6px;">VS Code, Git, XAMPP/WAMP (for PHP + MySQL), Chrome DevTools.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-right">
+            <div class="device-mock" role="img" aria-label="Course mockup">
+              
+              <img src="full stack basic s.jpg" alt="BASIC course preview">
+            </div>
+
+            <div class="photo-row" aria-hidden="true">
+              <div class="photo-slot" title="Syllabus">
+                <div class="plus"><i class="bi bi-file-earmark-text-fill"></i></div>
+              </div>
+              <div class="photo-slot" title="Projects">
+                <div class="plus"><i class="bi bi-folder-fill"></i></div>
+              </div>
+              <div class="photo-slot" title="Certificate">
+                <div class="plus"><i class="bi bi-award-fill"></i></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Wave -->
+        <svg class="wave" viewBox="0 0 1200 80" preserveAspectRatio="none" style="margin-top:6px;"><path d="M0,20 C200,80 400,0 600,30 C800,60 1000,0 1200,28 L1200,120 L0,120 Z" fill="rgba(124,92,255,0.04)"></path></svg>
+
+        <!-- MODULES -->
+        <section class="spec" aria-labelledby="modules" data-aos="fade-up">
+          <div class="d-flex align-items-start justify-content-between">
+            <div>
+              <div class="kicker">Syllabus</div>
+              <h2 id="modules" class="section-title">Full Stack Development — Course Modules</h2>
+              <p class="muted" style="max-width:60ch">Structured modules to take you from the basics of web to building a working full-stack project using PHP & MySQL (beginner-friendly).</p>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <!-- Module 1 -->
+            <div class="role-card mb-3">
+              <h5>Module 1: Introduction to Web Development</h5>
+              <ul class="outline">
+                <li>• Understanding how the web works (client-server model)</li>
+                <li>• Overview of frontend and backend development</li>
+                <li>• Setting up the development environment (VS Code, XAMPP/WAMP, Git)</li>
+                <li>• Basic file structure for web projects</li>
+              </ul>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="role-card mb-3">
+              <h5>Module 2: Frontend Development (Beginner Level)</h5>
+
+              <div style="margin-top:10px;">
+                <div class="mini">HTML (Structure of Web Pages)</div>
+                <ul class="outline">
+                  <li>• Basic tags and attributes</li>
+                  <li>• Forms and inputs</li>
+                  <li>• Semantic HTML</li>
+                  <li>• Tables, lists, and media</li>
+                </ul>
+              </div>
+
+              <div style="margin-top:10px;">
+                <div class="mini">CSS (Styling Web Pages)</div>
+                <ul class="outline">
+                  <li>• Selectors and properties</li>
+                  <li>• Colors, typography, and backgrounds</li>
+                  <li>• Box model, margins, padding</li>
+                  <li>• Layouts: Flexbox and Grid</li>
+                </ul>
+              </div>
+
+              <div style="margin-top:10px;">
+                <div class="mini">JavaScript (Basics of Programming for the Web)</div>
+                <ul class="outline">
+                  <li>• Variables, data types, operators</li>
+                  <li>• Functions and scope</li>
+                  <li>• DOM manipulation</li>
+                  <li>• Events and event handling</li>
+                </ul>
+              </div>
+
+              <div style="margin-top:10px;">
+                <div class="mini">Bootstrap (Responsive Design)</div>
+                <ul class="outline">
+                  <li>• Grid system</li>
+                  <li>• Components (navbar, cards, buttons, forms)</li>
+                  <li>• Utilities and customization</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="role-card mb-3">
+              <h5>Module 3: Backend Development (Beginner Level)</h5>
+
+              <div style="margin-top:10px;">
+                <div class="mini">PHP (Server-Side Scripting)</div>
+                <ul class="outline">
+                  <li>• Introduction to PHP syntax</li>
+                  <li>• Variables, arrays, loops, functions</li>
+                  <li>• Handling forms with PHP</li>
+                  <li>• Sessions and cookies</li>
+                </ul>
+              </div>
+
+              <div style="margin-top:10px;">
+                <div class="mini">SQL (Databases)</div>
+                <ul class="outline">
+                  <li>• Introduction to relational databases</li>
+                  <li>• Creating databases and tables</li>
+                  <li>• CRUD operations (Create, Read, Update, Delete)</li>
+                  <li>• Joins and relationships</li>
+                </ul>
+              </div>
+
+              <div style="margin-top:10px;">
+                <div class="mini">Connecting PHP with SQL</div>
+                <ul class="outline">
+                  <li>• PHP-MySQL connection</li>
+                  <li>• Performing CRUD with PHP and MySQL</li>
+                  <li>• Handling errors and validations</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="role-card mb-3">
+              <h5>Module 4: Live Project 1 (Beginner Level)</h5>
+              <div class="muted" style="margin-top:8px;">Mini Project Examples:</div>
+              <ul class="outline" style="margin-top:8px;">
+                <li>• Personal Portfolio Website</li>
+                <li>• Contact Form with PHP + MySQL storage</li>
+                <li>• Simple Blog System</li>
+              </ul>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- OPTIONAL: small gallery or visuals -->
+        <section class="spec" data-aos="fade-up">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="kicker">Extras</div>
+              <h2 class="section-title">Hands-on Labs & Assessments</h2>
+              <p class="muted">Each module includes hands-on lab tasks, small quizzes and a final mini-project to demonstrate CRUD & routing concepts.</p>
+            </div>
+          </div>
+
+          <div class="gallery" style="margin-top:12px;">
+            <img src="full stack basic1.jpg" alt="Lab 1 (replace)">
+            <img src="full stack basic 2.jpg" alt="Lab 2 (replace)">
+            <img src="full stack basic 3.jpg" alt="Lab 3 (replace)">
+          </div>
+        </section>
+
+        <div class="back-wrap">
+           <a class="btn-back" href="index.html" id="backToDashboard"><i class="bi bi-arrow-left-circle"></i> Back to Dashboard</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Optional: AOS & Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>if(window.AOS) AOS.init({duration:650});</script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
