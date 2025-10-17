@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>JCRM Technologies — Home Page</title>
   <meta name="description" content="JCRM Technologies provides industry-specific ERP solutions and IT training with internships and 100% placement assistance." />
 
@@ -229,6 +229,37 @@
       .card-glass { padding: 14px; }
       .section-title { font-size: 1.25rem; }
     }
+    @media (max-width: 991px) {
+  .navbar-section .navbar-collapse {
+    background-color: inherit; /* same color as navbar */
+    padding: 5px 0;
+    margin-top: 4px;
+    width: 100%;
+  }
+
+  .navbar-section .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+   }
+
+  .navbar-section .nav-item {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+
+  .navbar-section .nav-link {
+    display: block;
+    width: 100%;
+    padding: 6px 0;
+  }
+
+  .navbar-section .container {
+    overflow: hidden;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -237,16 +268,15 @@
 <header class="custom-header">
   <div class="container-fluid px-3">
     <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid px-0">
+      <div class="container-fluid px-0 d-flex align-items-center justify-content-between">
         <div class="brand-left">
   <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
-    <img src="LOGO JCRM .jpg" alt="Logo" />
+    <img src="assets/img/logo-jcrm.jpg" alt="Logo" />
     <span>JCRM TECHNOLOGIES</span>
   </a>
 </div>
-          </div>
           <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"><span></span></span>
+            <span class="navbar-toggler-icon"><span>
           </button>
         </div>
       </nav>
@@ -370,7 +400,7 @@
           <div class="icon-pill mb-3"><i class="fa-solid fa-graduation-cap"></i></div>
           <h5>LMS</h5>
           <p class="text-secondary small">Learning management: courses, attendance, assignments, exams & analytics.</p>
-          <a href="LMS.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+          <a href="lms.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
         </div>
 
         <div class="card card-glass p-4 h-100">
@@ -384,7 +414,7 @@
           <div class="icon-pill mb-3"><i class="fa-solid fa-hospital"></i></div>
           <h5>Hospital Management</h5>
           <p class="text-secondary small">EMR, appointments, billing & lab integration.</p>
-          <a href="HOSPITALM.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+          <a href="hospitalm.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
         </div>
 
         <div class="card card-glass p-4 h-100">
@@ -735,7 +765,7 @@
               <div class="icon"><i class="fa-solid fa-database"></i></div>
               <div>
                 <div class="title">Backend Development</div>
-                <div class="meta"><a class="small" href="">Learn more</a></div>
+                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
               </div>
             </div>
 
@@ -743,7 +773,7 @@
               <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>
               <div>
                 <div class="title">Frontend Development</div>
-                <div class="meta"><a class="small" href="">Learn more</a></div>
+              <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
               </div>
             </div>
 
@@ -751,7 +781,7 @@
               <div class="icon"><i class="fa-solid fa-code"></i></div>
               <div>
                 <div class="title">Full Stack (Basic)</div>
-                <div class="meta"><a class="small" href="fullstackbasic.html">Learn more</a></div>
+                <!-- <div class="meta"><a class="small" href="fullstackbasic.html">Learn more</a></div> -->
               </div>
             </div>
 
@@ -759,7 +789,7 @@
               <div class="icon"><i class="fa-solid fa-code"></i></div>
               <div>
                 <div class="title">Full Stack (Advance)</div>
-                <div class="meta"><a class="small" href="fullstackadvance.html">Learn more</a></div>
+                <!-- <div class="meta"><a class="small" href="fullstackadvance.html">Learn more</a></div> -->
               </div>
             </div>
 
@@ -767,7 +797,7 @@
               <div class="icon"><i class="fa-solid fa-brain"></i></div>
               <div>
                 <div class="title">Data Science & AI/ML</div>
-                <div class="meta"><a class="small" href="">Learn more</a></div>
+                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
               </div>
             </div>
 
@@ -775,7 +805,7 @@
               <div class="icon"><i class="fa-solid fa-shield"></i></div>
               <div>
                 <div class="title">Cyber Security</div>
-                <div class="meta"><a class="small" href="">Learn more</a></div>
+                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
               </div>
             </div>
 
@@ -783,7 +813,7 @@
               <div class="icon"><i class="fa-solid fa-cloud"></i></div>
               <div>
                 <div class="title">Cloud & DevOps</div>
-                <div class="meta"><a class="small" href="">Learn more</a></div>
+                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
               </div>
             </div>
 
@@ -791,7 +821,7 @@
               <div class="icon"><i class="fa-solid fa-vial"></i></div>
               <div>
                 <div class="title">QA Automation</div>
-                <div class="meta"><a class="small" href="">Learn more</a></div>
+                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
               </div>
             </div>
           </div>
