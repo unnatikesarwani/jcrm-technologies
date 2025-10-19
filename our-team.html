@@ -73,7 +73,12 @@
     .navbar-section { background-color:#212529; width:100%; }
     .navbar-nav { display:flex; flex-direction:row; justify-content:center; align-items:center; gap:40px; padding:10px 0; }
     .navbar-nav .nav-link { color:white; font-weight:500; font-size:1rem; text-transform:uppercase; }
-
+    .navbar ul li a:hover {
+      background: linear-gradient(90deg,#ffd166,#f97316);
+      color: #000;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+     }
     /* Hero */
     .hero {
       background: url('1st BACKGROUND.jpg') no-repeat center center/cover;
@@ -84,7 +89,8 @@
     }
     .hero::before {
       content:""; position:absolute; top:0; left:0; right:0; bottom:0;
-      background: rgba(4,2,2,0.5); z-index:1;
+      background: linear-gradient(180deg,rgba(2,6,23,0.45),rgba(2,6,23,0.72));
+      z-index:1;
     }
     .hero .container { position:relative; z-index:2; }
     .hero h1 { font-size:2.8rem; font-weight:bold; margin:0; }
@@ -157,7 +163,7 @@
       display:inline-block; font-size:1.9rem; font-weight:800; color:#0b1226; position:relative; padding-bottom:8px;
     }
     .team-title h2::after {
-      content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:0; width:64px; height:4px; background:var(--accent); border-radius:3px;
+      content:""; position:absolute; left:50%; transform:translateX(-50%); bottom:0; width:64px; height:4px; background: #ff7a00; border-radius:3px;
     }
     .team-title p { color:var(--muted); margin-top:10px; max-width:760px; margin-left:auto; margin-right:auto; }
 
@@ -524,7 +530,8 @@
   <div class="container">
     <h2 class="section-title">Get in Touch</h2>
     <p>Have a question or want a demo? Reach out to us now!</p>
-    <a href="contact-us.html" class="btn btn-primary">Contact Us</a>
+   <a href="contact-us.html" class="btn" style="background:linear-gradient(90deg,#ffd166,#f97316);color:#071024;font-weight:600;border:none;">Contact Us</a>
+
   </div>
 </section>
 

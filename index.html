@@ -13,6 +13,43 @@
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <style>
+    .equal-btn {
+  min-width: 180px; /* adjust as needed */
+  text-align: center;
+  padding: 10px 20px; /* ensures same height */
+}
+/* --- FIX: Updated CSS for the Dot List --- */
+
+.list-unstyled-custom {
+    /* Retained: Removes default bullets and padding, allows Flexbox centering */
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+    /* Ensure the UL container is wide enough and uses Flex for centering */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allows items to wrap if the screen is too narrow */
+}
+
+.list-item-dot {
+    /* INCREASED MARGIN: Adds more space between items to prevent overlap */
+    margin: 0 1.5rem; /* Increased from 1rem to 1.5rem for safety */
+    font-size: 1rem; 
+    color: #e6eefc; 
+    position: relative;
+    /* Added display: inline-block to ensure margin and padding are honored */
+    display: inline-block; 
+    white-space: nowrap; 
+}
+
+.list-item-dot::before {
+    content: "•"; 
+    color: #fff; 
+    font-size: 1.2rem; 
+    /* Ensures the dot stays close to the text */
+    margin-right: 0.5rem;
+}
+
     :root{
       --maxw:1150px;
       --accent-1: #5b7cfa;    /* blue primary */
@@ -48,6 +85,14 @@
     .navbar-section { background-color:#212529; width:100%; }
     .navbar-nav { display:flex; flex-direction:row; justify-content:center; align-items:center; gap:40px; padding:10px 0; }
     .navbar-nav .nav-link { color:white; font-weight:500; font-size:1rem; text-transform:uppercase; }
+    /* ===== Navbar Hover Effect (excluding logo) ===== */
+    .navbar ul li a:hover {
+      background: linear-gradient(90deg,#ffd166,#f97316);
+      color: #000;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+     }
+
 
     /* ---------------- Hero (unchanged layout; small fix for missing </h1>) ---------------- */
     .hero{
@@ -86,17 +131,17 @@
     .assistant-hero p { margin:0; color: rgba(255,255,255,0.92); line-height:1.45; font-size:clamp(13px,2vw,15px); }
     .assistant-hero .cta { margin-top:12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
     .btn-primary-assist { background:linear-gradient(90deg,#ffd166,#f97316); color:#071024; padding:10px 16px; border-radius:999px; font-weight:700; text-decoration:none; display:inline-flex; gap:8px; align-items:center; }
-    .btn-ghost-assist { background:transparent; border:1px solid rgba(255,255,255,0.14); color:#fff; padding:10px 14px; border-radius:999px; font-weight:700; text-decoration:none; }
+    .btn-ghost-assist { background:linear-gradient(90deg,#ffd166,#f97316); color:#071024; padding:10px 16px; border-radius:999px; font-weight:700; text-decoration:none; display:inline-flex; gap:8px; align-items:center; }
 
     .assistant-card{ background: rgba(255,255,255,0.04); border-radius:12px; padding:18px; text-align:center; border:1px solid rgba(255,255,255,0.06); }
     .assistant-card img{ width:220px; max-width:100%; height:auto; display:block; margin:0 auto; }
     .assistant-card .small{ color: rgba(255,255,255,0.9); margin-top:10px; font-size:.95rem; }
 
     .features{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
-    .feature{background:rgba(255,255,255,0.06);border-radius:10px;padding:8px 10px;font-weight:700;color:#071024;background-clip:padding-box}
+    .feature{background:linear-gradient(90deg,#ffd166,#f97316);border-radius:10px;padding:8px 10px;font-weight:700;color:#071024;background-clip:padding-box}
 
     .float-icon{position:absolute;left:12px;bottom:-24px;background:linear-gradient(180deg,#ffd166,#f97316);width:66px;height:66px;border-radius:12px;display:grid;place-items:center;color:#071024;box-shadow:0 12px 30px rgba(0,0,0,0.25)}
-    .float-icon--right{right:12px;left:auto;bottom:-24px;background:linear-gradient(180deg,var(--hero-start),#3b62f5);color:#fff}
+    .float-icon--right{right:12px;left:auto;bottom:-24px;background:linear-gradient(180deg,#ffd166,#f97316);width:66px;height:66px;border-radius:12px;display:grid;place-items:center;color:#071024;box-shadow:0 12px 30px rgba(0,0,0,0.25)}
 
     footer { background-color:#212529; color:#fff; padding:40px 0; }
     .footer .social-icons a { color:#fff; margin:0 10px; font-size:1.5rem; transition: color 0.3s; }
@@ -131,7 +176,7 @@
       position: absolute;
       left: 0; top: 6px;
       width: 6px; height: calc(100% - 8px);
-      background: linear-gradient(180deg, var(--accent-1), #3b82f6);
+      background: linear-gradient(90deg,#ffd166,#f97316);
       border-radius: 4px;
       box-shadow: 0 10px 20px rgba(59,124,250,0.12);
     }
@@ -151,14 +196,14 @@
 
     .icon-pill{
       width:48px; height:48px; border-radius:12px; display:grid; place-items:center;
-      background: linear-gradient(135deg,var(--accent-1),#3b82f6); color:#fff; border:0;
+      background: linear-gradient(180deg,#ffd166,#f97316); color:#fff; border:0;
       box-shadow: 0 8px 20px rgba(59,124,250,0.12);
     }
 
-    section p, section .text-secondary { color: #c8d8ff; }
+    section p, section .text-light { color: #c8d8ff; }
     section h5 { font-family: serif; font-weight:700; color:#f6fbff; margin-top: 8px; }
 
-    .text-secondary.small, p.small { color: #b8c8ee; font-size: .95rem; }
+    .text-light.small, p.small { color: #b8c8ee; font-size: .95rem; }
 
     .card-glass a.small { color: #dbe9ff; font-weight:600; text-decoration:none; }
     .card-glass a.small:hover { color: var(--accent-2); text-decoration: underline; }
@@ -169,7 +214,7 @@
 
     /* buttons in middle */
     .btn-outline-light { border-color: rgba(255,255,255,0.06); color: #e6eefc; }
-    .btn-primary { background: linear-gradient(90deg,var(--accent-1),#3b82f6); border: none; padding: 10px 16px; border-radius: 10px; font-weight:600; box-shadow: 0 10px 30px rgba(59,124,250,0.12); }
+    .btn-primary { background: linear-gradient(180deg,#ffd166,#f97316); border: none; padding: 10px 16px; border-radius: 10px; font-weight:600; box-shadow: 0 10px 30px rgba(59,124,250,0.12); }
 
     /* Testimonials tweaks */
     #carouselTestimonials .blockquote { font-style: italic; color:#eaf3ff; font-size:1.03rem; font-family: serif; }
@@ -215,7 +260,7 @@
       padding: 10px 12px;
       border-radius: 10px;
     }
-    .intern-item .icon { width:42px; height:42px; border-radius:10px; display:grid; place-items:center; background: linear-gradient(90deg,var(--accent-1),#3b82f6); color:white; box-shadow: 0 8px 20px rgba(59,124,250,0.08); }
+    .intern-item .icon { width:42px; height:42px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(180deg,#ffd166,#f97316); color:white; box-shadow: 0 8px 20px rgba(59,124,250,0.08); }
     .intern-item .title { font-weight:700; color:#f6fbff; font-size: .95rem; margin-bottom:2px; }
     .intern-item .meta { color:#c7d8ff; font-size:.92rem; }
 
@@ -259,6 +304,7 @@
     overflow: hidden;
   }
 }
+
 
   </style>
 </head>
@@ -347,9 +393,9 @@
           <h2 class="section-title">About JCRM Technologies</h2>
           <p class="lead-muted">We’re a forward-thinking IT solutions & training company helping businesses and learners thrive in a competitive digital era.</p>
 
-          <p class="text-secondary">We specialize in end-to-end ERP solutions for education, healthcare, logistics, retail, fitness, and more — and we run hands-on training, internships, and placement programs across Full Stack, Data Science, Cyber Security, Cloud & DevOps, AI/ML, and QA Automation.</p>
-
-          <a href="#mission" class="btn btn-outline-light mt-3">Our Mission</a>
+          <p class="text-light">We specialize in end-to-end ERP solutions for education, healthcare, logistics, retail, fitness, and more — and we run hands-on training, internships, and placement programs across Full Stack, Data Science, Cyber Security, Cloud & DevOps, AI/ML, and QA Automation.</p>
+           
+          <a href="#mission" class="btn-primary btn-outline-light mt-3 text-decoration-none">Our Mission</a>
         </div>
 
         <div class="col-lg-6" data-aos="fade-left">
@@ -358,22 +404,22 @@
               <div class="col-6">
                 <div class="icon-pill mb-2"><i class="fa-solid fa-shield-halved"></i></div>
                 <div class="fw-semibold">Enterprise Security</div>
-                <small class="text-secondary">Hardened & compliant-first.</small>
+                <small class="text-light">Hardened & compliant-first.</small>
               </div>
               <div class="col-6">
                 <div class="icon-pill mb-2"><i class="fa-solid fa-gauge-high"></i></div>
                 <div class="fw-semibold">Performance at Scale</div>
-                <small class="text-secondary">Optimized for growth.</small>
+                <small class="text-light">Optimized for growth.</small>
               </div>
               <div class="col-6">
                 <div class="icon-pill mb-2"><i class="fa-solid fa-layer-group"></i></div>
                 <div class="fw-semibold">Modular Architecture</div>
-                <small class="text-secondary">Plug-and-play modules.</small>
+                <small class="text-light">Plug-and-play modules.</small>
               </div>
               <div class="col-6">
                 <div class="icon-pill mb-2"><i class="fa-solid fa-people-roof"></i></div>
                 <div class="fw-semibold">Real Projects</div>
-                <small class="text-secondary">Hands-on training.</small>
+                <small class="text-light">Hands-on training.</small>
               </div>
             </div>
           </div>
@@ -390,82 +436,82 @@
           <h2 class="section-title mb-1">ERP Solutions</h2>
           <p class="lead-muted mb-0">Industry-specific products with modern UX, security, and scalability.</p>
         </div>
-        <a href="contact-us.html" class="btn btn-outline-light mt-3 mt-lg-0">Request a Product Demo</a>
+        <a href="contact-us.html" class="btn-primary btn-outline-light mt-3 text-decoration-none">Request a Product Demo</a>
+      
       </div>
 
       <!-- Desktop Grid (visible lg and up) -->
       <div class="solutions-grid d-none d-lg-grid mb-4">
-        <!-- Keep original card contents but condensed in grid -->
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-graduation-cap"></i></div>
-          <h5>LMS</h5>
-          <p class="text-secondary small">Learning management: courses, attendance, assignments, exams & analytics.</p>
-          <a href="lms.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h5>LMS</h5>
+        <p class="text-light small">Learning management: courses, attendance, assignments, exams & analytics.</p>
+        <a href="lms.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
 
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-people-group"></i></div>
-          <h5>HR Management</h5>
-          <p class="text-secondary small">Hiring, payroll, attendance, performance & ESS.</p>
-          <a href="HRMANAGEMENT.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-people-group"></i></div>
+        <h5>HR Management</h5>
+        <p class="text-light small">Hiring, payroll, attendance, performance & ESS.</p>
+        <a href="HRMANAGEMENT.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
 
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-hospital"></i></div>
-          <h5>Hospital Management</h5>
-          <p class="text-secondary small">EMR, appointments, billing & lab integration.</p>
-          <a href="hospitalm.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-hospital"></i></div>
+        <h5>Hospital Management</h5>
+        <p class="text-light small">EMR, appointments, billing & lab integration.</p>
+        <a href="hospitalm.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
 
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-dumbbell"></i></div>
-          <h5>Gym Management</h5>
-          <p class="text-secondary small">Memberships, trainers, schedules & progress tracking.</p>
-          <a href="gymmanagement.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-dumbbell"></i></div>
+        <h5>Gym Management</h5>
+        <p class="text-light small">Memberships, trainers, schedules & progress tracking.</p>
+        <a href="gymmanagement.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
 
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-boxes-stacked"></i></div>
-          <h5>Accounting</h5>
-          <p class="text-secondary small">Invoices, expenses, and finance reports made simple.</p>
-          <a href="accounting.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <h5>Accounting</h5>
+        <p class="text-light small">Invoices, expenses, and finance reports made simple.</p>
+        <a href="accounting.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
 
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-taxi"></i></div>
-          <h5>Cab Booking</h5>
-          <p class="text-secondary small">Fleet dispatch, tracking and fare management.</p>
-          <a href="cabbooking.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-taxi"></i></div>
+        <h5>Cab Booking</h5>
+        <p class="text-light small">Fleet dispatch, tracking and fare management.</p>
+        <a href="cabbooking.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
 
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-burger"></i></div>
-          <h5>Food Delivery</h5>
-          <p class="text-secondary small">Order flow, partners, rider assignment & billing.</p>
-          <a href="fooddelivery.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-burger"></i></div>
+        <h5>Food Delivery</h5>
+        <p class="text-light small">Order flow, partners, rider assignment & billing.</p>
+        <a href="fooddelivery.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
 
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-cart-shopping"></i></div>
-          <h5>E-Commerce</h5>
-          <p class="text-secondary small">Storefronts, payments, fulfillment & analytics.</p>
-          <a href="ecommerce.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-cart-shopping"></i></div>
+        <h5>E-Commerce</h5>
+        <p class="text-light small">Storefronts, payments, fulfillment & analytics.</p>
+        <a href="ecommerce.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
 
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-comment-dots"></i></div>
-          <h5>Chatbot</h5>
-          <p class="text-secondary small">24/7 conversational automation to boost engagement.</p>
-          <a href="chatbot.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-comment-dots"></i></div>
+        <h5>Chatbot</h5>
+        <p class="text-light small">24/7 conversational automation to boost engagement.</p>
+        <a href="chatbot.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
 
-        <div class="card card-glass p-4 h-100">
-          <div class="icon-pill mb-3"><i class="fa-solid fa-shield-halved"></i></div>
-          <h5>Fraud Detection</h5>
-          <p class="text-secondary small">Real-time protection with AI-driven rules & alerts.</p>
-          <a href="frauddelection.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </div>
+    <div class="card card-glass p-4 h-100">
+        <div class="icon-pill mb-3"><i class="fa-solid fa-shield-halved"></i></div>
+        <h5>Fraud Detection</h5>
+        <p class="text-light small">Real-time protection with AI-driven rules & alerts.</p>
+        <a href="frauddelection.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+    </div>
+</div>
 
       <!-- Mobile Carousel (visible on smaller screens) -->
       <div id="solutionsCarousel" class="carousel slide solutions-carousel d-lg-none" data-bs-ride="carousel">
@@ -477,7 +523,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-graduation-cap"></i></div>
                 <div>
                   <h5 class="mb-1">LMS</h5>
-                  <p class="small text-secondary mb-0">Learning management: courses, attendance, assignments & analytics.</p>
+                  <p class="small text-light mb-0">Learning management: courses, attendance, assignments & analytics.</p>
+                  <br>
+                  <a href="lms.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -489,7 +537,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-people-group"></i></div>
                 <div>
                   <h5 class="mb-1">HR Management</h5>
-                  <p class="small text-secondary mb-0">Hiring, payroll & performance management.</p>
+                  <p class="small text-light mb-0">Hiring, payroll & performance management.</p>
+                  <br>
+                  <a href="HRMANAGEMENT.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -501,7 +551,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-hospital"></i></div>
                 <div>
                   <h5 class="mb-1">Hospital Management</h5>
-                  <p class="small text-secondary mb-0">EMR, appointments & billing.</p>
+                  <p class="small text-light mb-0">EMR, appointments & billing.</p>
+                  <br>
+                  <a href="hospitalm.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -513,7 +565,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-dumbbell"></i></div>
                 <div>
                   <h5 class="mb-1">Gym Management</h5>
-                  <p class="small text-secondary mb-0">Memberships, trainers & schedules.</p>
+                  <p class="small text-light mb-0">Memberships, trainers & schedules.</p>
+                  <br>
+                  <a href="gymmanagement.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -525,7 +579,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-boxes-stacked"></i></div>
                 <div>
                   <h5 class="mb-1">Accounting</h5>
-                  <p class="small text-secondary mb-0">Invoices, expenses & finance reports.</p>
+                  <p class="small text-light mb-0">Invoices, expenses & finance reports.</p>
+                  <br>
+                  <a href="accounting.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -537,7 +593,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-taxi"></i></div>
                 <div>
                   <h5 class="mb-1">Cab Booking</h5>
-                  <p class="small text-secondary mb-0">Fleet dispatch & trip management.</p>
+                  <p class="small text-light mb-0">Fleet dispatch & trip management.</p>
+                  <br>
+                  <a href="cabbooking.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -549,7 +607,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-burger"></i></div>
                 <div>
                   <h5 class="mb-1">Food Delivery</h5>
-                  <p class="small text-secondary mb-0">Order tracking & partner management.</p>
+                  <p class="small text-light mb-0">Order tracking & partner management.</p>
+                  <br>
+                  <a href="fooddelivery.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -561,7 +621,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-cart-shopping"></i></div>
                 <div>
                   <h5 class="mb-1">E-Commerce</h5>
-                  <p class="small text-secondary mb-0">Storefronts, payments & fulfillment.</p>
+                  <p class="small text-light mb-0">Storefronts, payments & fulfillment.</p>
+                  <br>
+                  <a href="ecommerce.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -573,7 +635,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-comment-dots"></i></div>
                 <div>
                   <h5 class="mb-1">Chatbot</h5>
-                  <p class="small text-secondary mb-0">Conversational automation for support.</p>
+                  <p class="small text-light mb-0">Conversational automation for support.</p>
+                  <br>
+                  <a href="chatbot.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -585,7 +649,9 @@
                 <div class="icon-pill"><i class="fa-solid fa-shield-halved"></i></div>
                 <div>
                   <h5 class="mb-1">Fraud Detection</h5>
-                  <p class="small text-secondary mb-0">AI-monitoring & real-time alerts.</p>
+                  <p class="small text-light mb-0">AI-monitoring & real-time alerts.</p>
+                  <br>
+                  <a href="frauddelection.html" class="small d-block mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
                 </div>
               </div>
             </div>
@@ -617,7 +683,7 @@
           <div class="card card-glass p-4 h-100">
             <div class="icon-pill mb-3"><i class="fa-solid fa-globe"></i></div>
             <h5>Take Your Business Online</h5>
-            <p class="text-secondary small">Establish a strong, modern digital presence with websites, portals and productized ERP modules.</p>
+            <p class="text-light small">Establish a strong, modern digital presence with websites, portals and productized ERP modules.</p>
           </div>
         </div>
 
@@ -625,7 +691,7 @@
           <div class="card card-glass p-4 h-100">
             <div class="icon-pill mb-3"><i class="fa-solid fa-filter"></i></div>
             <h5>Save Time & Effort</h5>
-            <p class="text-secondary small">Automation and workflow optimization to accelerate outcomes.</p>
+            <p class="text-light small">Automation and workflow optimization to accelerate outcomes.</p>
           </div>
         </div>
 
@@ -633,7 +699,7 @@
           <div class="card card-glass p-4 h-100">
             <div class="icon-pill mb-3"><i class="fa-solid fa-chart-line"></i></div>
             <h5>Focus on Growth</h5>
-            <p class="text-secondary small">Campaigns, lead flows & analytics handled for you.</p>
+            <p class="text-light small">Campaigns, lead flows & analytics handled for you.</p>
           </div>
         </div>
 
@@ -642,7 +708,7 @@
           <div class="card card-glass p-4 h-100">
             <div class="icon-pill mb-3"><i class="fa-brands fa-rocketchat"></i></div>
             <h5>Social Media Lead Gen</h5>
-            <p class="text-secondary small">Targeted outreach and relationship managers.</p>
+            <p class="text-light small">Targeted outreach and relationship managers.</p>
           </div>
         </div>
 
@@ -650,7 +716,7 @@
           <div class="card card-glass p-4 h-100">
             <div class="icon-pill mb-3"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
             <h5>Expert Business Analysis</h5>
-            <p class="text-secondary small">POCs and tailored growth strategies backed by data.</p>
+            <p class="text-light small">POCs and tailored growth strategies backed by data.</p>
           </div>
         </div>
 
@@ -658,7 +724,7 @@
           <div class="card card-glass p-4 h-100">
             <div class="icon-pill mb-3"><i class="fa-solid fa-bullhorn"></i></div>
             <h5>Strong Digital Presence</h5>
-            <p class="text-secondary small">Consistent visibility across channels to expand reach.</p>
+            <p class="text-light small">Consistent visibility across channels to expand reach.</p>
           </div>
         </div>
       </div>
@@ -672,12 +738,15 @@
         <div class="col-lg-6" data-aos="fade-right">
           <h2 class="section-title">Why Choose Us</h2>
           <ul class="list-unstyled list-checked mt-3">
-            <li><i class="fa-solid fa-circle-check me-2"></i>Trusted product-based company with industry-specific solutions</li>
-            <li><i class="fa-solid fa-circle-check me-2"></i>Agile and transparent development approach</li>
-            <li><i class="fa-solid fa-circle-check me-2"></i>Experienced team across all IT domains</li>
-            <li><i class="fa-solid fa-circle-check me-2"></i>Customized, scalable, and modern technology stacks</li>
-            <li><i class="fa-solid fa-circle-check me-2"></i>Reliable customer support and timely delivery</li>
-            <li><i class="fa-solid fa-circle-check me-2"></i>Long-term growth & innovation mindset</li>
+           <li>100% Job Oriented Training</li>
+              <li><i class="fa-solid fa-circle-check me-2"></i>Industry Oriented Training </li>
+              <li><i class="fa-solid fa-circle-check me-2"></i>Practical knowledge</li>
+              <li><i class="fa-solid fa-circle-check me-2"></i>Real-time projects</li>
+              <li><i class="fa-solid fa-circle-check me-2"></i> Project training</li>
+              <li><i class="fa-solid fa-circle-check me-2"></i> Interview preparation</li>
+              <li><i class="fa-solid fa-circle-check me-2"></i> HRs references</li>
+              <li><i class="fa-solid fa-circle-check me-2"></i>1 on 1 Live Online Sessions </li>
+              <li><i class="fa-solid fa-circle-check me-2"></i>10 years Job support</li>
           </ul>
         </div>
 
@@ -687,22 +756,22 @@
               <div class="col-6">
                 <div class="icon-pill mb-2"><i class="fa-solid fa-lock"></i></div>
                 <div class="fw-semibold">Secure</div>
-                <small class="text-secondary">RBAC, audit trails.</small>
+                <small class="text-light">RBAC, audit trails.</small>
               </div>
               <div class="col-6">
                 <div class="icon-pill mb-2"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                 <div class="fw-semibold">Cloud-native</div>
-                <small class="text-secondary">CI/CD & auto-scaling.</small>
+                <small class="text-light">CI/CD & auto-scaling.</small>
               </div>
               <div class="col-6">
                 <div class="icon-pill mb-2"><i class="fa-solid fa-chart-pie"></i></div>
                 <div class="fw-semibold">Analytics</div>
-                <small class="text-secondary">Real-time dashboards.</small>
+                <small class="text-light">Real-time dashboards.</small>
               </div>
               <div class="col-6">
                 <div class="icon-pill mb-2"><i class="fa-solid fa-handshake"></i></div>
                 <div class="fw-semibold">Partnership</div>
-                <small class="text-secondary">Built for the long run.</small>
+                <small class="text-light">Built for the long run.</small>
               </div>
             </div>
           </div>
@@ -721,10 +790,10 @@
               <div class="icon-pill"><i class="fa-solid fa-bullseye"></i></div>
               <h3 class="mb-0">Our Mission</h3>
             </div>
-            <p class="text-secondary">
+            <p class="text-light">
               Empower businesses with innovative, intelligent, and scalable ERP solutions that simplify operations, improve efficiency, and drive sustainable growth. We focus on usability, automation, integration, and real-time decisions while fostering long-term client partnerships and continuous learning.
             </p>
-            <ul class="text-secondary small mb-0">
+            <ul class="text-light small mb-0">
               <li>Build user-friendly, robust ERP systems</li>
               <li>Understand unique business needs</li>
               <li>Automate workflows for speed & accuracy</li>
@@ -739,12 +808,14 @@
               <div class="icon-pill"><i class="fa-solid fa-eye"></i></div>
               <h3 class="mb-0">Our Vision</h3>
             </div>
-            <p class="text-secondary">
+            <p class="text-light">
               Become a global leader in ERP solutions and IT services, recognized for quality, innovation, and customer success — connecting experiences and fueling sustainable growth.
             </p>
-            <span class="badge badge-soft me-1">Innovation</span>
-            <span class="badge badge-soft me-1">Customer Success</span>
-            <span class="badge badge-soft">Sustainability</span>
+            <ul class="d-flex justify-content-center list-unstyled-custom">
+    <li class="list-item-dot">Innovation</li>
+    <li class="list-item-dot">Customer Success</li>
+    <li class="list-item-dot">Sustainability</li>
+</ul>
           </div>
         </div>
       </div>
@@ -760,52 +831,52 @@
           <p class="lead-muted">Hands-on learning with real projects and a strong hiring network in India and abroad.</p>
 
           <!-- compact two-column internship list -->
+           <div class="intern-item">
+              <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>
+              <div>
+                <div class="title">Frontend Development</div>
+              <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
+              </div>
+            </div>
+
           <div class="intern-list mt-3">
             <div class="intern-item">
               <div class="icon"><i class="fa-solid fa-database"></i></div>
               <div>
                 <div class="title">Backend Development</div>
-                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
-              </div>
-            </div>
-
-            <div class="intern-item">
-              <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>
-              <div>
-                <div class="title">Frontend Development</div>
-              <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
+                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
               </div>
             </div>
 
             <div class="intern-item">
               <div class="icon"><i class="fa-solid fa-code"></i></div>
               <div>
-                <div class="title">Full Stack (Basic)</div>
-                <!-- <div class="meta"><a class="small" href="fullstackbasic.html">Learn more</a></div> -->
+                <div class="title">Digital Marketing</div>
+                <!-- <div class="meta"><a class="small" href="fullstackbasic.html">View Feature</a></div> -->
               </div>
             </div>
 
-            <div class="intern-item">
-              <div class="icon"><i class="fa-solid fa-code"></i></div>
-              <div>
-                <div class="title">Full Stack (Advance)</div>
-                <!-- <div class="meta"><a class="small" href="fullstackadvance.html">Learn more</a></div> -->
-              </div>
-            </div>
 
             <div class="intern-item">
               <div class="icon"><i class="fa-solid fa-brain"></i></div>
               <div>
-                <div class="title">Data Science & AI/ML</div>
-                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
+                <div class="title">Zen AI</div>
+                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
+              </div>
+            </div>
+            <div class="intern-item">
+              <div class="icon"><i class="fa-solid fa-brain"></i></div>
+              <div>
+                <div class="title">Data Science</div>
+                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
               </div>
             </div>
 
             <div class="intern-item">
               <div class="icon"><i class="fa-solid fa-shield"></i></div>
               <div>
-                <div class="title">Cyber Security</div>
-                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
+                <div class="title">Ai/ML</div>
+                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
               </div>
             </div>
 
@@ -813,7 +884,7 @@
               <div class="icon"><i class="fa-solid fa-cloud"></i></div>
               <div>
                 <div class="title">Cloud & DevOps</div>
-                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
+                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
               </div>
             </div>
 
@@ -821,34 +892,34 @@
               <div class="icon"><i class="fa-solid fa-vial"></i></div>
               <div>
                 <div class="title">QA Automation</div>
-                <!-- <div class="meta"><a class="small" href="">Learn more</a></div> -->
+                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
               </div>
             </div>
           </div>
 
-          <p class="text-secondary small mt-3">Our internships include real projects, mentor guidance and interview support, with strong placement connections across hiring partners.</p>
+          <p class="text-light small mt-3">Our training include real projects, mentor guidance and interview support, with strong placement connections across hiring partners.</p>
         </div>
 
         <div class="col-lg-6" data-aos="fade-left">
           <div class="card card-glass p-4">
             <div class="d-flex align-items-center gap-3 mb-2">
-              <i class="fa-solid fa-users-viewfinder fa-2x text-info"></i>
+              <i class="fa-solid fa-users-viewfinder fa-2x" style="color: #f97316;"></i>
               <h4 class="mb-0">Join Our IT Talent Network</h4>
             </div>
 
-            <p class="text-secondary small mb-3">Collaborate with skilled professionals, work on innovative ERP projects, and grow your career with mentorship and flexible work options.</p>
-            <p class="text-secondary small mb-3">To apply, please follow these steps:</p>
+            <p class="text-light small mb-3">Collaborate with skilled professionals, work on innovative ERP projects, and grow your career with mentorship and flexible work options.</p>
+            <p class="text-light small mb-3">To apply, please follow these steps:</p>
 
-            <ol class="text-secondary small mb-3">
+            <ol class="text-light small mb-3">
               <li>Click on ‘Apply Now’ on our Join Us page.</li>
               <li>Fill out the application form and upload your resume.</li>
               <li>Submit and wait for our team to review your application.</li>
             </ol>
 
-            <p class="text-secondary small mb-3">Our team will carefully review your submission and respond within 1–3 business days.</p>
+            <p class="text-light small mb-3">Our team will carefully review your submission and respond within 1–3 business days.</p>
 
             <a href="join-us.html" class="btn btn-primary">Apply Now</a>
-            <p class="text-secondary small mt-3"><em>…and many more (we provide internships across IT domains).</em></p>
+            <p class="text-light small mt-3"><em>…and many more (we provide internships across IT domains).</em></p>
           </div>
         </div>
       </div>
@@ -872,8 +943,14 @@
           </ul>
 
           <div class="d-flex gap-3 mt-3">
-            <a href="#contact-full" class="btn btn-primary"><i class="fa-solid fa-paper-plane me-2"></i> Send Resume</a>
-            <a href="https://www.linkedin.com/company/jcrm-technologies-private-limited/" class="btn btn-outline-light"><i class="fa-brands fa-linkedin me-2"></i> Connect</a>
+ <a href="#contact-full" class="btn btn-primary equal-btn">
+  <i class="fa-solid fa-paper-plane me-2"></i> Send Resume
+</a>
+
+<a href="https://www.linkedin.com/company/jcrm-technologies-private-limited/" class="btn btn-outline-light equal-btn">
+  <i class="fa-brands fa-linkedin me-2"></i> Connect
+</a>
+
           </div>
         </div>
 
@@ -883,7 +960,7 @@
               <div class="icon-pill"><i class="fa-solid fa-quote-left"></i></div>
               <h5 class="mb-0">“Alone we can do so little; together we can do so much.”</h5>
             </div>
-            <small class="text-secondary">— Helen Keller</small>
+            <small class="text-light">— Helen Keller</small>
           </div>
         </div>
       </div>
@@ -906,21 +983,21 @@
           <div class="carousel-item active text-center">
             <figure>
               <blockquote class="blockquote">JCRM’s ERP unified our branches with real-time visibility and faster decisions.</blockquote>
-              <figcaption class="blockquote-footer text-secondary">Raghav Mishra</figcaption>
+              <figcaption class="blockquote-footer text-light">Raghav Mishra</figcaption>
             </figure>
           </div>
 
           <div class="carousel-item text-center">
             <figure>
               <blockquote class="blockquote">Hands-on internship prepared me for my first DevOps role. Excellent mentorship!</blockquote>
-              <figcaption class="blockquote-footer text-secondary">Shwati Singh</figcaption>
+              <figcaption class="blockquote-footer text-light">Shwati Singh</figcaption>
             </figure>
           </div>
 
           <div class="carousel-item text-center">
             <figure>
               <blockquote class="blockquote">Transparent delivery, scalable stack, and great support — highly recommend.</blockquote>
-              <figcaption class="blockquote-footer text-secondary">Satyam Upadhyay</figcaption>
+              <figcaption class="blockquote-footer text-light">Satyam Upadhyay</figcaption>
             </figure>
           </div>
         </div>
@@ -970,15 +1047,15 @@
                 </div>
 
                 <div class="col-12 d-flex gap-2">
-                  <button class="btn btn-primary" type="submit"><i class="fa-solid fa-paper-plane me-2"></i>Send</button>
-                  <a id="waBtn" class="btn btn-outline-light" target="_blank" rel="noopener">
+                  <button class="btn btn-primary" type="submit"><i class="fa-solid fa-envelope me-2"></i>Send</button>
+                  <a href="https://chat.whatsapp.com/BF1UCTNKoXU426LFcLGieq?mode=ac_c" id="" class="btn btn-outline-light" target="_blank" rel="noopener">
                     <i class="fa-brands fa-whatsapp me-2"></i>Send Resume via WhatsApp
                   </a>
                 </div>
               </div>
             </form>
 
-            <small class="text-secondary d-block mt-2">We typically respond within 1–2 business days.</small>
+            <small class="text-light d-block mt-2">We typically respond within 1–2 business days.</small>
           </div>
         </div>
 
@@ -1013,7 +1090,7 @@
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-linkedin-in"></i></a>
         <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://chat.whatsapp.com/BF1UCTNKoXU426LFcLGieq?mode=ac_c"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
   </footer>

@@ -69,6 +69,12 @@
       font-size: 1rem;
       text-transform: uppercase;
     }
+    .navbar ul li a:hover {
+      background: linear-gradient(90deg,#ffd166,#f97316);
+      color: #000;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+     }
 
     .hero {
       background: url('1st BACKGROUND.jpg') no-repeat center center/cover;
@@ -82,7 +88,7 @@
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(4, 2, 2, 0.5); 
+      background:linear-gradient(180deg,rgba(2,6,23,0.45),rgba(2,6,23,0.72));
       z-index: 1;
     }
 
@@ -227,112 +233,102 @@
   </section>
 
   <!-- PRODUCTS GRID -->
-  <section id="products" class="products-wrap" aria-label="ERP products">
-    <div class="products-grid">
-      <!-- Card 1 -->
-      <article class="product-card" data-aos="fade-up">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></div>
-        <div class="product-body">
-          <h3>LMS — Learning Management Software</h3>
-          <p class="muted">Course management, assignments, assessments, student tracking and reports for institutes & enterprises.</p>
-          <a href="LMS.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </article>
+<section id="products" class="products-wrap section" aria-label="ERP products">
+    <div class="container">
+        <h2 class="section-title mb-4">Our Core Products</h2>
+        <div class="products-grid">
+            <article class="product-card" data-aos="fade-up">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>LMS — Learning Management Software</h3>
+                    <p class="muted">Course management, assignments, assessments, student tracking and reports for institutes & enterprises.</p>
+                    <a href="LMS.html" class="small mt-auto">View Feature<i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
 
-      <!-- Card 2 -->
-      <article class="product-card" data-aos="fade-up" data-aos-delay="50">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-people-roof"></i></div>
-        <div class="product-body">
-          <h3>HR Management Software</h3>
-          <p class="muted">Recruitment, onboarding, attendance, payroll and performance management in a single dashboard.</p>
-          <a href="HRMANAGEMENT.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </article>
+            <article class="product-card" data-aos="fade-up" data-aos-delay="50">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-people-roof"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>HR Management Software</h3>
+                    <p class="muted">Recruitment, onboarding, attendance, payroll and performance management in a single dashboard.</p>
+                    <a href="HRMANAGEMENT.html" class="small mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
 
-      <!-- Card 3 -->
-      <article class="product-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-hospital"></i></div>
-        <div class="product-body">
-          <h3>Hospital Management Software</h3>
-          <p class="muted">EMR, appointments, lab integrations, pharmacy & billing workflows built for clinical efficiency.</p>
-          <a href="HOSPITALM.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </article>
+            <article class="product-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-hospital"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>Hospital Management Software</h3>
+                    <p class="muted">EMR, appointments, lab integrations, pharmacy & billing workflows built for clinical efficiency.</p>
+                    <a href="HOSPITALM.html" class="small mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
 
-      <!-- Card 4 -->
-      <article class="product-card" data-aos="fade-up" data-aos-delay="150">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-dumbbell"></i></div>
-        <div class="product-body">
-          <h3>Gym Management Software</h3>
-          <p class="muted">Memberships, class scheduling, trainer management and secure payments.</p>
-          <a href="gymmanagement.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </article>
+            <article class="product-card" data-aos="fade-up" data-aos-delay="150">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-dumbbell"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>Gym Management Software</h3>
+                    <p class="muted">Memberships, class scheduling, trainer management and secure payments.</p>
+                    <a href="gymmanagement.html" class="small mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
 
-      <!-- Card 5 -->
-      <article class="product-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-boxes-stacked"></i></div>
-        <div class="product-body">
-          <h3>Accounting Management Software</h3>
-          <p class="muted">Seamless accounting software for effortless finance management.
-Track expenses, invoices, and reports with accuracy and ease.</p>
-          <a href="accounting.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </article>
+            <article class="product-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-boxes-stacked"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>Accounting Management Software</h3>
+                    <p class="muted">Seamless accounting software for effortless finance management. Track expenses, invoices, and reports with accuracy and ease.</p>
+                    <a href="accounting.html" class="small mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
 
-      <!-- Card 6 -->
-      <article class="product-card" data-aos="fade-up" data-aos-delay="250">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-taxi"></i></div>
-        <div class="product-body">
-          <h3>Cab Booking Management Software</h3>
-          <p class="muted">Fleet dispatch, driver app, dynamic pricing and real-time vehicle tracking.</p>
-          <a href="cabbooking.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </article>
+            <article class="product-card" data-aos="fade-up" data-aos-delay="250">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-taxi"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>Cab Booking Management Software</h3>
+                    <p class="muted">Fleet dispatch, driver app, dynamic pricing and real-time vehicle tracking.</p>
+                    <a href="cabbooking.html" class="small mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
 
-      <!-- Card 7 -->
-      <article class="product-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-burger"></i></div>
-        <div class="product-body">
-          <h3>Food Delivery Management Software</h3>
-          <p class="muted">Order flow, restaurant & rider coordination, and customer tracking for fast deliveries.</p>
-          <a href="fooddelivery.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </article>
+            <article class="product-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-burger"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>Food Delivery Management Software</h3>
+                    <p class="muted">Order flow, restaurant & rider coordination, and customer tracking for fast deliveries.</p>
+                    <a href="fooddelivery.html" class="small mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
 
-      <!-- Card 8 -->
-      <article class="product-card" data-aos="fade-up" data-aos-delay="350">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-cart-shopping"></i></div>
-        <div class="product-body">
-          <h3>E-Commerce</h3>
-          <p class="muted">Storefronts, catalog management, secure payments and integrated shipping & analytics.</p>
-          <a href="ecommerce.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </article>
+            <article class="product-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-cart-shopping"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>E-Commerce</h3>
+                    <p class="muted">Storefronts, catalog management, secure payments and integrated shipping & analytics.</p>
+                    <a href="ecommerce.html" class="small mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
 
-      <!-- Card 9 -->
-      <article class="product-card" data-aos="fade-up" data-aos-delay="350">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-cart-shopping"></i></div>
-        <div class="product-body">
-          <h3>chatbot</h3>
-          <p class="muted">24/7 intelligent chatbot support for instant customer engagement.
-Automate conversations and boost customer satisfaction.</p>
-          <a href="chatbot.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-        </div>
-      </article>
+            <article class="product-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-comment-dots"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>Chatbot</h3>
+                    <p class="muted">24/7 intelligent chatbot support for instant customer engagement. Automate conversations and boost customer satisfaction.</p>
+                    <a href="chatbot.html" class="small mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
 
-      <!-- Card 10 -->
-      <article class="product-card" data-aos="fade-up" data-aos-delay="350">
-        <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-cart-shopping"></i></div>
-        <div class="product-body">
-          <h3>Fraud Detection</h3>
-          <p class="muted">Smart AI-powered fraud detection to safeguard your business.
-Detect, prevent, and act on suspicious activity in real-time.</p>
-          <a href="frauddelection.html" class="small">Learn more <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+            <article class="product-card" data-aos="fade-up" data-aos-delay="450">
+                <div class="product-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="product-body d-flex flex-column h-100">
+                    <h3>Fraud Detection</h3>
+                    <p class="muted">Smart AI-powered fraud detection to safeguard your business. Detect, prevent, and act on suspicious activity in real-time.</p>
+                    <a href="frauddelection.html" class="small mt-auto">View Feature <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+                </div>
+            </article>
         </div>
-      </article>
     </div>
-  </section>
+</section>
 
   <!-- BENEFITS STRIP -->
   <section class="erp-benefits" aria-hidden="false">
@@ -411,20 +407,20 @@ Detect, prevent, and act on suspicious activity in real-time.</p>
     color: #081023;
     padding: 10px 16px;
     border-radius: 999px;
-    font-weight: 800;
+    font-weight: 750;
     text-decoration:none;
     box-shadow: 0 10px 30px rgba(249,115,22,0.15);
     display:inline-block;
   }
   .btn-primary.large { padding: 14px 20px; font-size: 1rem; }
   .btn-outline {
-    background: transparent;
+    background: linear-gradient(90deg, #ffd166 0%, #f97316 100%);
     border: 1px solid rgba(255,255,255,0.12);
-    color: rgba(255,255,255,0.96);
+    color: #081023;
     padding: 10px 14px;
     border-radius: 999px;
     text-decoration:none;
-    font-weight:700;
+    font-weight:750;
   }
 
   /* Products grid */
@@ -446,7 +442,7 @@ Detect, prevent, and act on suspicious activity in real-time.</p>
     transition: transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease;
   }
   .product-card:focus, .product-card:hover { transform: translateY(-6px); box-shadow: 0 22px 48px rgba(11,17,34,0.09); outline: none; }
-  .product-icon { width:56px; height:56px; display:grid; place-items:center; border-radius:12px; background: linear-gradient(180deg,var(--accent-2),var(--accent)); color:#05264a; font-size:20px; flex-shrink:0; }
+  .product-icon { width:56px; height:56px; display:grid; place-items:center; border-radius:12px; background: linear-gradient(180deg,#ffd166,#f97316); color:#05264a; font-size:20px; flex-shrink:0; }
   .product-body h3 { margin:0 0 6px; font-size:1rem; line-height:1.2; }
   .product-body .muted { margin:0; color: var(--muted); font-size:0.95rem; line-height:1.45; }
 
