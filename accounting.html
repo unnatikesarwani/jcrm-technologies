@@ -16,24 +16,27 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@500;700;800&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg-1: #071026;
-      --bg-2: #07183a;
-      --card-bg: rgba(255,255,255,0.04);
-      --muted: #b9c6ea;
-      --accent1: #7c5cff;
-      --accent2: #00d1ff;
-      --accent3: #ff77c7;
-      --text: #eaf0ff;
-      --radius: 18px;
-      --glass-border: rgba(255,255,255,0.06);
-      --shadow-1: 0 12px 40px rgba(0,0,0,0.6);
+   :root{
+      --accent-1: #ffd166;
+      --accent-2: #f97316;
+      --bg-dark: #0b1020; /* matched to home page background */
+      --muted: #a8b3cf;
+      --muted-2: #c8d7ff;
+      --text: #e6eefc;
+      --card-radius: 14px;
+      --card-elev: 0 10px 30px rgba(2,6,23,0.45);
     }
 
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial; -webkit-font-smoothing:antialiased;}
-    .page-wrap{min-height:100vh;display:flex;align-items:stretch;justify-content:center;padding:28px;}
-    .container-xl{max-width:1200px;width:100%;}
-
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      margin: 0;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height: 1.6;
+    }
     .card-glass{
       background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
       border-radius: calc(var(--radius) + 6px);
@@ -55,7 +58,9 @@
     .hero-sub { color:var(--muted); font-size:1.03rem; margin-bottom:16px; max-width:60ch; }
 
     .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:12px; }
-    .btn-primary-cute{ background: linear-gradient(90deg,var(--accent1),var(--accent3)); border: none; color:#06101a; padding:12px 20px; border-radius:999px; font-weight:700; box-shadow: 0 10px 30px rgba(124,92,255,0.14); font-family: 'Poppins', sans-serif; }
+    .btn-primary-cute{ background: linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      border: none; color:#071024; padding:12px 20px; border-radius:999px; font-weight:700;
+      box-shadow: 0 10px 30px rgba(124,92,255,0.14); }
     .btn-ghost{ color:var(--text); border-radius:999px; padding:10px 16px; border:1px solid rgba(255,255,255,0.06); background:transparent; }
 
     .stats { display:flex; gap:12px; margin-top:18px; flex-wrap:wrap; }
@@ -93,13 +98,91 @@
 
     .btn-sm-pill { border-radius:999px; padding:6px 12px; font-weight:600; font-family: 'Poppins', sans-serif; }
     .back-wrap{ text-align:center; margin-top:22px; }
-    .btn-back { background: linear-gradient(90deg,var(--accent1),var(--accent3)); border:0; color:#06101a; padding:12px 22px; border-radius:999px; font-weight:700; }
+    .btn-back { background: linear-gradient(90deg,var(--accent-1),var(--accent-2)); border:0; color:#07101a; padding:12px 22px; border-radius:999px; font-weight:700; }
 
     .cute-dot { width:10px; height:10px; border-radius:50%; background: linear-gradient(90deg,var(--accent1),var(--accent3)); display:inline-block; margin-right:8px; vertical-align:middle; }
 
     @media (max-width:600px){ .hero-title{font-size:1.6rem} .device-mock{ max-height:260px; } }
+    /* ---------------- Header / Nav ---------------- */
+.custom-header { background-color: white; }
+
+.brand-row { display:flex; justify-content:space-between; align-items:center; padding:10px 1rem; min-height:70px; background-color: white; }
+.brand-left { display:flex; align-items:center; }
+.brand-left img { height: 50px; width: 50px; border-radius: 50%; margin-right: 10px; }
+.brand-left span { color: black; font-size: 1.6rem; font-weight: 700; white-space: nowrap; }
+
+.navbar-section { background-color:#212529; width:100%; }
+.navbar-nav { display:flex; flex-direction:row; justify-content:center; align-items:center; gap:40px; padding:10px 0; }
+.navbar-nav .nav-link { color:white; font-weight:500; font-size:1rem; text-transform:uppercase; transition: all 0.3s ease; }
+
+/* Navbar Hover Effect */
+.navbar ul li a:hover {
+  background: linear-gradient(90deg, #ffd166, #f97316);
+  color: #000;
+  border-radius: 20px;
+}
+
+/* Responsive Navbar */
+@media (max-width: 991px) {
+  .navbar-section .navbar-collapse {
+    background-color: inherit;
+    padding: 5px 0;
+    margin-top: 4px;
+    width: 100%;
+  }
+
+  .navbar-section .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .navbar-section .nav-item { width: 100%; text-align: center; margin: 0; }
+  .navbar-section .nav-link { display: block; width: 100%; padding: 6px 0; }
+}
+
+/* ---------------- Footer ---------------- */
+footer { background-color:#212529; color:#fff; padding:40px 0; }
+footer .social-icons a { color:#fff; margin:0 10px; font-size:1.5rem; transition: color 0.3s ease; }
+footer .social-icons a:hover { color:#fd210d; }
+footer p { margin:0; font-size:.95rem; }
+
   </style>
 </head>
+<!-- HEADER / NAV -->
+<header class="custom-header">
+  <div class="container-fluid px-3">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid px-0 d-flex align-items-center justify-content-between">
+        <div class="brand-left">
+          <a href="index.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
+            <img src="assets/img/logo-jcrm.jpg" alt="Logo" />
+            <span>JCRM TECHNOLOGIES</span>
+          </a>
+        </div>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"><span>
+        </button>
+      </div>
+    </nav>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-section">
+    <div class="container-fluid justify-content-center">
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+        <ul class="navbar-nav text-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="erp-solutions.html">ERP SOLUTIONS</a></li>
+          <li class="nav-item"><a class="nav-link" href="our-team.html">OUR TEAM</a></li>
+          <li class="nav-item"><a class="nav-link" href="join-us.html">JOIN US</a></li>
+          <li class="nav-item"><a class="nav-link" href="about-us.html">ABOUT US</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact-us.html">CONTACT US</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
 <body>
   <div class="blob purple" aria-hidden="true"></div>
   <div class="blob cyan" aria-hidden="true"></div>
@@ -118,7 +201,7 @@
             </p>
 
             <div class="cta-row">
-              <button class="btn-primary-cute"><i class="bi bi-telephone-fill"></i> <a href="contact-us.html">Request Demo(call us)</button></a>
+              <button class="btn-primary-cute"><i class="bi bi-telephone-fill"></i> <a href="contact-us.html">Request Demo</button></a>
             </div>
 
             <div class="stats" aria-hidden="true">
@@ -369,6 +452,18 @@
       </div>
     </div>
   </div>
+<!-- FOOTER -->
+<footer>
+  <div class="container text-center">
+    <p class="mb-2">&copy; 2025 JCRM Technologies. All Rights Reserved.</p>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </div>
+</footer>
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
