@@ -11,303 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <!-- AOS Animations -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-
-  <style>
-    .equal-btn {
-  min-width: 180px; /* adjust as needed */
-  text-align: center;
-  padding: 10px 20px; /* ensures same height */
-}
-/* --- FIX: Updated CSS for the Dot List --- */
-
-.list-unstyled-custom {
-    /* Retained: Removes default bullets and padding, allows Flexbox centering */
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
-    /* Ensure the UL container is wide enough and uses Flex for centering */
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Allows items to wrap if the screen is too narrow */
-}
-
-.list-item-dot {
-    /* INCREASED MARGIN: Adds more space between items to prevent overlap */
-    margin: 0 1.5rem; /* Increased from 1rem to 1.5rem for safety */
-    font-size: 1rem; 
-    color: #e6eefc; 
-    position: relative;
-    /* Added display: inline-block to ensure margin and padding are honored */
-    display: inline-block; 
-    white-space: nowrap; 
-}
-
-.list-item-dot::before {
-    content: "•"; 
-    color: #fff; 
-    font-size: 1.2rem; 
-    /* Ensures the dot stays close to the text */
-    margin-right: 0.5rem;
-}
-
-    :root{
-      --maxw:1150px;
-      --accent-1: #5b7cfa;    /* blue primary */
-      --accent-2: #ffd166;    /* warm accent */
-      --muted: #a8b3cf;
-      --muted-2: #c8d7ff;
-      --glass: rgba(255,255,255,0.04);
-      --bg-dark: #0b1020;
-      --card-radius: 14px;
-
-      --hero-start: #2b3aeb;
-      --hero-end: #1e293b;
-      --card-elev: 0 10px 30px rgba(2,6,23,0.45);
-    }
-
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-dark);
-      color: #e6eefc;
-      margin: 0;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height: 1.6;
-    }
-
-    /* ---------------- Header / Nav (LEAVE AS IS) ---------------- */
-    .custom-header { background-color: white; }
-    .brand-row { display:flex; justify-content:space-between; align-items:center; padding:10px 1rem; min-height:70px; background-color: white; }
-    .brand-left { display:flex; align-items:center; }
-    .brand-left img { height: 50px; width: 50px; border-radius: 50%; margin-right: 10px; }
-    .brand-left span { color: black; font-size: 1.6rem; font-weight: 700; white-space: nowrap; }
-    .navbar-section { background-color:#212529; width:100%; }
-    .navbar-nav { display:flex; flex-direction:row; justify-content:center; align-items:center; gap:40px; padding:10px 0; }
-    .navbar-nav .nav-link { color:white; font-weight:500; font-size:1rem; text-transform:uppercase; }
-    /* ===== Navbar Hover Effect (excluding logo) ===== */
-    .navbar ul li a:hover {
-      background: linear-gradient(90deg, #ffd166, #f97316);
-      color: #000;
-      border-radius: 20px;
-     }
-
-
-    /* ---------------- Hero (unchanged layout; small fix for missing </h1>) ---------------- */
-    .hero{
-      background: url('assets/img/1st BACKGROUND.jpg') no-repeat center center/cover;
-      color: white; padding: clamp(72px,10vw,120px) 0; text-align: center; position: relative;
-      overflow: hidden;
-    }
-    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,23,0.45),rgba(2,6,23,0.72));z-index:1}
-    .hero .container{position:relative;z-index:2;max-width:var(--maxw)}
-    .hero h1{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:900;letter-spacing:-0.6px;margin-bottom:8px}
-    .hero p{font-size:1.12rem;margin-top:12px;font-weight:600;line-height:1.6;color:var(--muted)}
-    .hero .badge{background:linear-gradient(90deg,var(--accent-2),#ffb066);color:#071024;padding:.55rem .8rem;border-radius:999px;font-weight:800;display:inline-flex;align-items:center;gap:8px}
-    .hero .hero-cta{margin-top:20px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-    .btn-hero-primary{background:linear-gradient(90deg,var(--accent-2),#ff9a3c);color:#071024;border-radius:999px;padding:12px 18px;font-weight:800;box-shadow:0 16px 36px rgba(255,154,60,0.12);border:0}
-    .btn-hero-ghost{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:12px 18px;border-radius:999px;font-weight:700}
-
-    /* ================= ASSISTANT HERO (NO CHANGE) ================= */
-    .assistant-hero {
-      background: linear-gradient(180deg, var(--hero-start), var(--hero-end));
-      color: #fff;
-      padding: 32px;
-      border-radius: 18px;
-      max-width: calc(var(--maxw) + 40px);
-      margin: 20px auto;
-      display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 20px;
-      align-items: center;
-      position: relative;
-      overflow: visible;
-      box-shadow: 0 20px 50px rgba(11,17,34,0.45);
-      border: 1px solid rgba(255,255,255,0.04);
-    }
-    .assistant-hero .inner { max-width:var(--maxw); margin:0 auto; text-align:center; } 
-    .assistant-hero h2 { font-weight:800; margin:0 0 8px; font-size:clamp(18px,3.6vw,30px); }
-    .assistant-hero p { margin:0; color: rgba(255,255,255,0.92); line-height:1.45; font-size:clamp(13px,2vw,15px); }
-    .assistant-hero .cta { margin-top:12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-    .btn-primary-assist { background:linear-gradient(90deg,#ffd166,#f97316); color:#071024; padding:10px 16px; border-radius:999px; font-weight:700; text-decoration:none; display:inline-flex; gap:8px; align-items:center; }
-    .btn-ghost-assist { background:linear-gradient(90deg,#ffd166,#f97316); color:#071024; padding:10px 16px; border-radius:999px; font-weight:700; text-decoration:none; display:inline-flex; gap:8px; align-items:center; }
-
-    .assistant-card{ background: rgba(255,255,255,0.04); border-radius:12px; padding:18px; text-align:center; border:1px solid rgba(255,255,255,0.06); }
-    .assistant-card img{ width:220px; max-width:100%; height:auto; display:block; margin:0 auto; }
-    .assistant-card .small{ color: rgba(255,255,255,0.9); margin-top:10px; font-size:.95rem; }
-
-    .features{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap}
-    .feature{background:linear-gradient(90deg,#ffd166,#f97316);border-radius:10px;padding:8px 10px;font-weight:700;color:#071024;background-clip:padding-box}
-
-    .float-icon{position:absolute;left:12px;bottom:-24px;background:linear-gradient(180deg,#ffd166,#f97316);width:66px;height:66px;border-radius:12px;display:grid;place-items:center;color:#071024;box-shadow:0 12px 30px rgba(0,0,0,0.25)}
-    .float-icon--right{right:12px;left:auto;bottom:-24px;background:linear-gradient(180deg,#ffd166,#f97316);width:66px;height:66px;border-radius:12px;display:grid;place-items:center;color:#071024;box-shadow:0 12px 30px rgba(0,0,0,0.25)}
-
-    footer { background-color:#212529; color:#fff; padding:40px 0; }
-    .footer .social-icons a { color:#fff; margin:0 10px; font-size:1.5rem; transition: color 0.3s; }
-    .footer .social-icons a:hover { color:#fd210d; }
-
-    @media (max-width: 1000px) {
-      .assistant-hero{ grid-template-columns: 1fr; padding:22px; }
-      .assistant-hero .inner { text-align:center; }
-      .float-icon, .float-icon--right { display:none; }
-    }
-
-    /* ---------------- Sections / Cards / Utilities (ENHANCED) ---------------- */
-    .section{padding:76px 0}
-    /* scoped to middle parts so header/footer/assistant-hero remain visually identical */
-    #about, #solutions, #offer, #why, #mission, #talent, #testimonials, #contact-full {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      color: #e9f3ff;
-    }
-
-    /* section title styling */
-    .section-title{
-      font-weight:800;
-      letter-spacing:.2px;
-      color:#fff;
-      font-size: clamp(1.2rem, 2.2vw, 1.6rem);
-      position: relative;
-      padding-left: 14px;
-      margin-bottom: .75rem;
-    }
-    .section-title::before{
-      content: "";
-      position: absolute;
-      left: 0; top: 6px;
-      width: 6px; height: calc(100% - 8px);
-      background: linear-gradient(90deg,#ffd166,#f97316);
-      border-radius: 4px;
-      box-shadow: 0 10px 20px rgba(59,124,250,0.12);
-    }
-
-    .lead-muted{ color: var(--muted-2); font-weight:500; }
-
-    /* improved card look for middle area (does NOT target assistant-hero) */
-    .card-glass{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255,255,255,0.04);
-      border-radius: var(--card-radius);
-      color: #e6eefc;
-      transition: transform .32s cubic-bezier(.2,.9,.3,1), box-shadow .32s;
-      box-shadow: var(--card-elev);
-    }
-    .card-glass:hover{ transform: translateY(-6px); box-shadow: 0 24px 60px rgba(2,6,23,0.55); }
-
-    .icon-pill{
-      width:48px; height:48px; border-radius:12px; display:grid; place-items:center;
-      background: linear-gradient(180deg,#ffd166,#f97316); color:#fff; border:0;
-      box-shadow: 0 8px 20px rgba(59,124,250,0.12);
-    }
-
-    section p, section .text-light { color: #c8d8ff; }
-    section h5 { font-family: serif; font-weight:700; color:#f6fbff; margin-top: 8px; }
-
-    .text-light.small, p.small { color: #b8c8ee; font-size: .95rem; }
-
-    .card-glass a.small { color: #dbe9ff; font-weight:600; text-decoration:none; }
-    .card-glass a.small:hover { color: var(--accent-2); text-decoration: underline; }
-
-    /* list checked */
-    .list-checked li { margin-bottom: .65rem; color:#dbeaff; }
-    .list-checked i { color: var(--accent-2); margin-right: .5rem; }
-
-    /* buttons in middle */
-    .btn-outline-light { border-color: rgba(255,255,255,0.06); color: #e6eefc; }
-    .btn-primary { background: linear-gradient(180deg,#ffd166,#f97316); border: none; padding: 10px 16px; border-radius: 10px; font-weight:600; box-shadow: 0 10px 30px rgba(59,124,250,0.12); }
-
-    /* Testimonials tweaks */
-    #carouselTestimonials .blockquote { font-style: italic; color:#eaf3ff; font-size:1.03rem; font-family: serif; }
-    #carouselTestimonials .blockquote-footer { color:#baccee; }
-
-    /* Contact form tweaks */
-    #contact-full .card-glass .form-label { color:#e7f1ff; font-weight:600; }
-    #contact-full .card-glass .form-control, #contact-full .card-glass textarea { background: #07102a; border-color:#233055; color:#e8f0ff; }
-    #contact-full .ratio iframe { border-radius:12px; }
-
-    /* ---------------- SOLUTIONS: desktop grid + mobile carousel ---------------- */
-    /* desktop grid (visible on >= lg) - keep your existing .row cards for large screens */
-    .solutions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-    @media (max-width: 991px) {
-      .solutions-grid { display: none; } /* hide desktop grid on tablet/mobile */
-    }
-
-    /* mobile carousel (visible on < lg) */
-    .solutions-carousel { display: none; }
-    @media (max-width: 991px) {
-      .solutions-carousel { display:block; margin: 0 auto; }
-      .solutions-carousel .carousel-item { padding: 1rem 0; }
-      .solutions-carousel .card { border-radius: 12px; }
-    }
-
-    /* Make solution card content nice inside carousel */
-    .solutions-carousel .card .card-body { padding: 1rem; }
-    .solutions-carousel .icon-pill { width:56px; height:56px; border-radius:12px; font-size:1.2rem; }
-
-    /* ---------------- INTERNSHIP: compact two-column list ---------------- */
-    .intern-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px 18px;
-      align-items: start;
-    }
-    .intern-item {
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
-      border: 1px solid rgba(255,255,255,0.04);
-      padding: 10px 12px;
-      border-radius: 10px;
-    }
-    .intern-item .icon { width:42px; height:42px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(180deg,#ffd166,#f97316); color:white; box-shadow: 0 8px 20px rgba(59,124,250,0.08); }
-    .intern-item .title { font-weight:700; color:#f6fbff; font-size: .95rem; margin-bottom:2px; }
-    .intern-item .meta { color:#c7d8ff; font-size:.92rem; }
-
-    @media (max-width: 767px) {
-      .intern-list { grid-template-columns: 1fr; }
-    }
-
-    /* small responsive polish */
-    @media (max-width: 575px) {
-      .section { padding: 40px 0; }
-      .card-glass { padding: 14px; }
-      .section-title { font-size: 1.25rem; }
-    }
-    @media (max-width: 991px) {
-  .navbar-section .navbar-collapse {
-    background-color: inherit; /* same color as navbar */
-    padding: 5px 0;
-    margin-top: 4px;
-    width: 100%;
-  }
-
-  .navbar-section .navbar-nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-   }
-
-  .navbar-section .nav-item {
-    width: 100%;
-    text-align: center;
-    margin: 0;
-  }
-
-  .navbar-section .nav-link {
-    display: block;
-    width: 100%;
-    padding: 6px 0;
-  }
-
-  .navbar-section .container {
-    overflow: hidden;
-  }
-}
-
-html, body {
-    overflow-x: hidden !important;
-  }
-  </style>
+  <link href="assets/css/main.css" rel="stylesheet">
 </head>
 <body>
 
@@ -346,8 +50,7 @@ html, body {
   </header>
 
   <!-- HERO (fixed closing tag included) -->
-  <section class="hero">
-    <div class="container text-center">
+   <section class="hero" style="background: url('assets/img/1st BACKGROUND.jpg') no-repeat center center/cover;">    <div class="container text-center">
       <span class="badge mb-3"><i class="fa-solid fa-bolt me-1"></i> Future-ready technology</span>
       <h1>Product-Based ERP Software Company</h1>
       <p class="lead mb-3">
@@ -832,20 +535,22 @@ html, body {
           <p class="lead-muted">Hands-on learning with real projects and a strong hiring network in India and abroad.</p>
 
           <!-- compact two-column internship list -->
-           <div class="intern-item">
+           
+
+          <div class="intern-list mt-3">
+            <div class="intern-item">
               <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>
               <div>
                 <div class="title">Frontend Development</div>
-              <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
+              <div class="meta"><a class="small" href="fullstackbasic.html">View Feature</a></div>
               </div>
             </div>
 
-          <div class="intern-list mt-3">
             <div class="intern-item">
               <div class="icon"><i class="fa-solid fa-database"></i></div>
               <div>
                 <div class="title">Backend Development</div>
-                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
+                <div class="meta"><a class="small" href="fullstackbasic.html">View Feature</a></div>
               </div>
             </div>
 
@@ -853,7 +558,7 @@ html, body {
               <div class="icon"><i class="fa-solid fa-code"></i></div>
               <div>
                 <div class="title">Digital Marketing</div>
-                <!-- <div class="meta"><a class="small" href="fullstackbasic.html">View Feature</a></div> -->
+                <div class="meta"><a class="small" href="">View Feature</a></div>
               </div>
             </div>
 
@@ -862,14 +567,14 @@ html, body {
               <div class="icon"><i class="fa-solid fa-brain"></i></div>
               <div>
                 <div class="title">Zen AI</div>
-                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
+                <div class="meta"><a class="small" href="">View Feature</a></div>
               </div>
             </div>
             <div class="intern-item">
               <div class="icon"><i class="fa-solid fa-brain"></i></div>
               <div>
                 <div class="title">Data Science</div>
-                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
+                <div class="meta"><a class="small" href="">View Feature</a></div>
               </div>
             </div>
 
@@ -877,7 +582,7 @@ html, body {
               <div class="icon"><i class="fa-solid fa-shield"></i></div>
               <div>
                 <div class="title">AI/ML</div>
-                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
+                <div class="meta"><a class="small" href="">View Feature</a></div>
               </div>
             </div>
 
@@ -885,7 +590,7 @@ html, body {
               <div class="icon"><i class="fa-solid fa-cloud"></i></div>
               <div>
                 <div class="title">Cloud & DevOps</div>
-                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
+                <div class="meta"><a class="small" href="">View Feature</a></div>
               </div>
             </div>
 
@@ -893,7 +598,7 @@ html, body {
               <div class="icon"><i class="fa-solid fa-vial"></i></div>
               <div>
                 <div class="title">QA Automation</div>
-                <!-- <div class="meta"><a class="small" href="">View Feature</a></div> -->
+                <div class="meta"><a class="small" href="">View Feature</a></div>
               </div>
             </div>
           </div>

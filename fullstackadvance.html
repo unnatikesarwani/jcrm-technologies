@@ -101,6 +101,14 @@
     ul.outline { margin:8px 0 0 18px; color:var(--text); line-height:1.5; }
     ul.outline li { margin:6px 0; }
     .mini { font-weight:600; color:var(--muted); font-size:0.92rem; }
+
+    .two-col-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+}
+
   </style>
 </head>
 <body>
@@ -121,7 +129,9 @@
             </p>
 
             <div class="cta-row">
-              <button class="btn-primary-cute"><i class="bi bi-journal-richtext"></i><a href="contact-us.html">Enroll Now</button></a>
+              <a href="contact-us.html" class="btn-primary-cute">
+              <i class="bi bi-journal-richtext"></i> Enroll Now
+              </a>
 
             <div class="stats" aria-hidden="true">
               <div class="stat-pill"><i class="bi bi-laptop"></i>&nbsp;<span>Advanced Frontend</span></div>
@@ -129,7 +139,7 @@
               <div class="stat-pill"><i class="bi bi-code-slash"></i>&nbsp;<span>Deployment & Projects</span></div>
             </div>
 
-            <div style="margin-top:16px; display:grid; grid-template-columns: repeat(2,1fr); gap:10px; max-width:58ch;">
+            <div class="two-col-grid">
               <div class="role-card">
                 <h5>Duration & Level</h5>
                 <div class="muted" style="margin-top:6px;">Advanced level — theory, hands-on labs and 2 live projects to build production-ready apps.</div>
@@ -144,9 +154,8 @@
           <div class="hero-right">
             <div class="device-mock" role="img" aria-label="Course mockup">
         
-              <img src="assets\img\fullstack\full stack advance s.jpg" alt="Advanced course preview ">
+              <img src="assets/img/fullstack/full stack advance s.jpg" alt="Advanced course preview ">
             </div>
-
             <div class="photo-row" aria-hidden="true">
               <div class="photo-slot" title="Syllabus">
                 <div class="plus"><i class="bi bi-file-earmark-text-fill"></i></div>
