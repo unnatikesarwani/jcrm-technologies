@@ -138,7 +138,7 @@
     }
 
     /* ---------------- Sections / Cards / Utilities (ENHANCED) ---------------- */
-    .section{padding:76px 0}
+    .section{padding:25px 0}
     /* scoped to middle parts so header/footer/assistant-hero remain visually identical */
     #about, #solutions, #offer, #why, #mission, #talent, #testimonials, #contact-full {
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
