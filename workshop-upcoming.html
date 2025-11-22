@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Upcoming Workshops | JCRM Technologies</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+
+  <style>
+    /* HERO SECTION */
+    .hero-workshop {
+      background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),url('assets/img/cybersecurity/cyber-bg.jpg') center/cover no-repeat;
+      padding: 110px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-workshop h1 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .hero-workshop p {
+      max-width: 780px;
+      margin: auto;
+      color: #c7d4ee;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* WORKSHOP CARDS */
+    .workshop-card {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 25px;
+      border: 1px solid rgba(255,255,255,0.09);
+      transition: 0.3s;
+      height: 100%;
+    }
+
+    .workshop-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .workshop-icon {
+      font-size: 25px;
+      margin-bottom: 5px;
+      background: linear-gradient(90deg, #ffd166, #f97316);
+      padding: 18px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .btn-register {
+      background: linear-gradient(90deg, #ffd166, #f97316);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: 700;
+      color: #061024;
+      margin-top: auto !important;   /* pushes button to bottom */
+      display: inline-block;
+}
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="custom-header">
+    <div class="container-fluid px-3">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid d-flex align-items-center justify-content-between px-0">
+
+          <div class="brand-left">
+            <a href="index.html" class="d-flex align-items-center gap-2" style="text-decoration:none; color:inherit;">
+              <img src="assets/img/logo-jcrm.jpg" alt="Logo" style="height:50px; width:50px; border-radius:50%;">
+              <span>JCRM TECHNOLOGIES</span>
+            </a>
+          </div>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
+      </nav>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-section">
+      <div class="container-fluid justify-content-center">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav text-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+                <li class="nav-item"><a class="nav-link" href="erp-solutions.html">ERP SOLUTIONS</a></li>
+            <li class="nav-item"><a class="nav-link" href="our-team.html">OUR TEAM</a></li>
+            <li class="nav-item"><a class="nav-link active" href="workshop-upcoming.html">WORKSHOPS</a></li>
+            <li class="nav-item"><a class="nav-link" href="join-us.html">JOIN US</a></li>
+            <li class="nav-item"><a class="nav-link" href="about-us.html">ABOUT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact-us.html">CONTACT US</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- HERO SECTION -->
+  <section class="hero-workshop">
+    <div class="container">
+      <span class="badge mb-3"
+        style="background:linear-gradient(90deg,#ffd166,#f97316); color:#071024; padding:10px 16px;
+               border-radius:50px; font-weight:800; font-size:1rem;">
+        <i class="fa-solid fa-chalkboard-user me-2"></i> Upcoming Technical Workshops
+      </span>
+
+      <h1>Empowering Students with Industry-Level Workshops</h1>
+      <p>
+        We provide hands-on skill-based workshops for <strong>schools</strong>, <strong>colleges</strong>, and 
+        <strong>training institutes</strong> — designed and delivered by experts in Cybersecurity, AI-ML, Forensics, and more.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- WORKSHOP LIST -->
+  <section class="section pt-5 pb-5">
+    <div class="container">
+
+      <div class="row g-4">
+
+        <!-- Cybersecurity Workshop -->
+        <div class="col-lg-4 col-md-6">
+          <div class="workshop-card">
+            <div class="workshop-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h4>Cybersecurity Awareness Workshop</h4>
+            <p>Cyber safety training for schools & colleges including ethical hacking basics, digital safety & prevention.</p>
+            <a href="workshop.html" class="btn-register mt-2">Register Now</a>
+          </div>
+        </div>
+
+        <!-- AI & ML Workshop -->
+        <div class="col-lg-4 col-md-6">
+          <div class="workshop-card">
+            <div class="workshop-icon"><i class="fa-solid fa-robot"></i></div>
+            <h4>AI & Machine Learning Workshop</h4>
+            <p>Build ML models, understand AI concepts, datasets, prediction systems & real project training.</p>
+            <a href="workshop.html" class="btn-register mt-2">Register Now</a>
+          </div>
+        </div>
+
+        <!-- Forensic Science Workshop -->
+        <div class="col-lg-4 col-md-6">
+          <div class="workshop-card">
+            <div class="workshop-icon"><i class="fa-solid fa-fingerprint"></i></div>
+            <h4>Forensic Science <br>Workshop</h4>
+            <p>Case-based training including evidence analysis, crime scene study, fingerprints, toxicology & cyber forensics.</p>
+            <a href="workshop.html" class="btn-register mt-2 ">Register Now</a>
+          </div>
+        </div>
+
+        <!-- Ethical Hacking -->
+        <div class="col-lg-4 col-md-6">
+          <div class="workshop-card">
+            <div class="workshop-icon"><i class="fa-solid fa-user-secret"></i></div>
+            <h4>Ethical Hacking Workshop</h4>
+            <p>Learn scanning, enumeration, system exploitation, password attacks & real-time hacking labs.</p>
+            <a href="workshop.html" class="btn-register mt-2">Register Now</a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2025 JCRM Technologies. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="https://chat.whatsapp.com/BF1UCTNKoXU426LFcLGieq?mode=ac_c"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

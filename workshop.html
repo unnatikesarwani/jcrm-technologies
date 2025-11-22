@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workshop Registration | JCRM Technologies</title>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="assets/css/main.css" rel="stylesheet"/>
+
+  <style>
+    .registration-section { padding: 80px 0; }
+    .registration-card {
+      background: rgba(255,255,255,0.05);
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.07);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .btn-submit {
+      background: linear-gradient(90deg, #ffd166, #f97316);
+      border: none;
+      padding: 12px 22px;
+      border-radius: 50px;
+      color: #061024;
+      font-weight: 700;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="custom-header">
+    <div class="container-fluid px-3">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid d-flex align-items-center justify-content-between px-0">
+          <div class="brand-left">
+            <a href="index.html" class="d-flex align-items-center gap-2" style="text-decoration:none; color:inherit;">
+              <img src="assets/img/logo-jcrm.jpg" alt="Logo" style="height:50px; width:50px; border-radius:50%;">
+              <span>JCRM TECHNOLOGIES</span>
+            </a>
+          </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-section">
+      <div class="container-fluid justify-content-center">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav text-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="erp-solutions.html">ERP SOLUTIONS</a></li>
+            <li class="nav-item"><a class="nav-link" href="our-team.html">OUR TEAM</a></li>
+            <li class="nav-item"><a class="nav-link" href="workshops-upcoming.html">WORKSHOPS</a></li>
+            <li class="nav-item"><a class="nav-link" href="join-us.html">JOIN US</a></li>
+            <li class="nav-item"><a class="nav-link" href="about-us.html">ABOUT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact-us.html">CONTACT US</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- CYBERSECURITY WORKSHOP HERO SECTION -->
+  <section class="hero-workshop" 
+    style="background: linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.75)),
+           url('assets/img/cybersecurity/cyber-bg.jpg') center/cover no-repeat;
+           padding: 100px 20px; text-align:center; color:white;">
+
+    <div class="container">
+      <span class="badge mb-3" 
+        style="background:linear-gradient(90deg,#ffd166,#f97316); color:#071024; padding:10px 16px;
+               border-radius:50px; font-weight:800; font-size:1rem;">
+        <i class="fa-solid fa-shield-halved me-2"></i> Cybersecurity Workshop
+      </span>
+
+      <h1 style="font-size:clamp(2rem,4.5vw,3.4rem); font-weight:900; margin-bottom:12px;">
+        Cybersecurity Awareness & Ethical Practices Workshop
+      </h1>
+
+      <p style="max-width:780px; margin:auto; color:#c7d4ee; font-size:1.1rem; line-height:1.6;">
+        A complete hands-on cybersecurity workshop for schools and colleges covering 
+        cyber awareness, ethical hacking basics, digital safety, password protection, 
+        cyber laws, online threats, and real-world defensive practices.
+      </p>
+    </div>
+  </section>
+
+
+
+  <!-- FORM SECTION -->
+  <section class="registration-section">
+    <div class="container">
+      <h1 class="text-center mb-4">Workshop Registration</h1>
+
+      <div class="col-lg-6 mx-auto">
+        <div class="registration-card">
+
+          <form id="regForm" onsubmit="event.preventDefault(); submitForm();">
+
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Phone Number</label>
+              <input type="text" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">School / College Name</label>
+              <input type="text" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">City / State</label>
+              <input type="text" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Workshop Type</label>
+              <select class="form-control" required>
+                <option value="Cybersecurity">Cybersecurity</option>
+                <option value="AI & ML">AI & ML</option>
+                <option value="Forensic Science">Forensic Science</option>
+                <option value="Ethical Hacking">Ethical Hacking</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Preferred Date</label>
+              <input type="date" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Message (Optional)</label>
+              <textarea class="form-control" rows="3"></textarea>
+            </div>
+
+            <button class="btn-submit" type="submit">Submit Registration</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SUCCESS ALERT -->
+  <script>
+    function submitForm() {
+      alert("Thank you! Your workshop registration has been submitted.");
+      document.getElementById("regForm").reset();
+    }
+  </script>
+
+
+  <!-- FOOTER -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2025 JCRM Technologies. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="https://chat.whatsapp.com/BF1UCTNKoXU426LFcLGieq?mode=ac_c"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
