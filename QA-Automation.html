@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QA Automation — Course & Syllabus | JCRM Technologies</title>
+
+  <!-- external CSS (keeps site consistent) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* Page-specific tiny tweaks (kept minimal so main.css controls look) */
+    .syllabus-summary { max-width: 78ch; margin: 0 auto 18px; color: var(--muted); text-align:left; }
+    .module-title { font-weight:700; color:var(--text); text-align:left; }
+    details > summary { cursor: pointer; padding: 10px 12px; border-radius: 10px; }
+    details[open] > summary { background: rgba(255,255,255,0.03); }
+    .module-content { padding: 12px 16px; color: var(--muted); text-align:left; }
+    .download-syllabus { display:inline-flex; align-items:center; gap:8px; }
+    .gallery img { max-width:100%; height:auto; border-radius:14px; }
+    .small-gallery { display:flex; gap:16px; flex-wrap:wrap; }
+    .small-gallery img { width:280px; border-radius:12px; object-fit:cover; }
+    .lead-muted { text-align:left; }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER (same structure as Zen AI) -->
+  <header class="custom-header">
+    <div class="container-fluid px-3">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid d-flex align-items-center justify-content-between px-0">
+          <div class="brand-left">
+            <a href="index.html" class="d-flex align-items-center" style="gap:8px; text-decoration:none; color:inherit;">
+              <img src="assets/img/logo-jcrm.jpg" alt="Logo" style="height:50px;width:50px;border-radius:50%;">
+              <span>JCRM TECHNOLOGIES</span>
+            </a>
+          </div>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
+      </nav>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-section">
+      <div class="container-fluid justify-content-center">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav text-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="erp-solutions.html">ERP SOLUTIONS</a></li>
+            <li class="nav-item"><a class="nav-link" href="our-team.html">OUR TEAM</a></li>
+            <li class="nav-item"><a class="nav-link" href="workshop-upcoming.html">WORKSHOP</a></li>
+            <li class="nav-item"><a class="nav-link" href="join-us.html">JOIN US</a></li>
+            <li class="nav-item"><a class="nav-link" href="about-us.html">ABOUT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact-us.html">CONTACT US</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+  <!-- HERO SECTION (Zen AI style applied) -->
+  <section class="hero section" aria-label="QA Automation course hero" data-aos="fade-up">
+    <div class="container text-center">
+      <span class="badge mb-3"><i class="fa-solid fa-gear me-1"></i> QA Automation Program</span>
+
+      <h1>QA Automation — <strong>From Basic to Advanced</strong></h1>
+
+      <p class="syllabus-summary">
+        Practical QA Automation training covering manual testing foundations, Selenium & WebDriver automation,
+        test frameworks, API testing, CI/CD integration, database testing and a final automation project.
+      </p>
+
+      <div class="hero-cta d-flex justify-content-center gap-3">
+        <a href="join-us.html" class="btn btn-hero-primary btn-lg">
+          <i class="fa-solid fa-user-plus me-2"></i> Enroll Now
+        </a>
+
+        <!-- Download redirects to registration (access after registration/payment) -->
+        <a class="btn btn-hero-ghost btn-lg download-syllabus" href="join-us.html">
+          <i class="fa-solid fa-file-arrow-down me-1"></i> Download Full Syllabus (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="section">
+    <div class="container">
+
+      <div class="row mb-4">
+        <div class="col-lg-10 text-start">
+          <p class="lead-muted mb-0">
+            This course prepares learners for industry roles in QA Automation with hands-on frameworks, automation scripts,
+            API testing, CI/CD integration and a practical final project to showcase on your resume.
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-10">
+
+          <!-- MODULES: extracted from QA Automation_JCRM.pdf (clean & left-aligned) -->
+          <details open class="mb-3">
+            <summary class="module-title">Module 1 — Software Testing Foundations</summary>
+            <div class="module-content">
+              <ul>
+                <li>What is testing, SDLC vs STLC</li>
+                <li>Functional vs non-functional testing</li>
+                <li>Smoke, sanity, regression</li>
+                <li>Test case design (Boundary, Equivalence Partitioning)</li>
+                <li>Defect life cycle</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Outcome:</b> Understand how testing fits in real projects and QA collaboration with dev teams.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 2 — Manual Testing Essentials</summary>
+            <div class="module-content">
+              <ul>
+                <li>Requirement analysis</li>
+                <li>Writing test cases & test scenarios</li>
+                <li>Exploratory testing</li>
+                <li>Bug reporting in tools like JIRA</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Hands-on:</b> Write test cases for login/signup/checkout and file sample bug reports.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 3 — SDLC Models & Agile</summary>
+            <div class="module-content">
+              <ul>
+                <li>Waterfall, Agile, Scrum</li>
+                <li>Sprints, user stories, acceptance criteria</li>
+                <li>Role of QA in Agile</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Outcome:</b> Learn how automation fits into Agile cycles.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 4 — Programming Fundamentals (Java or Python)</summary>
+            <div class="module-content">
+              <ul>
+                <li>Core concepts: variables, data types, conditions, loops, functions</li>
+                <li>OOP basics: classes, objects, inheritance, polymorphism</li>
+                <li>Exception handling, file handling</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Hands-on:</b> Write small programs daily, push to GitHub.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 5 — Version Control: Git & GitHub</summary>
+            <div class="module-content">
+              <ul>
+                <li>Git workflow, branching, merging</li>
+                <li>Pull requests, code review</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Hands-on:</b> Create repos, push automation scripts.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 6 — Selenium WebDriver (Core Automation Tool)</summary>
+            <div class="module-content">
+              <ul>
+                <li>What is Selenium, WebDriver architecture</li>
+                <li>Locators (ID, Name, CSS, XPath), element handling, waits</li>
+                <li>Alerts, frames, windows, navigation, screenshots</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Hands-on:</b> Automate login, forms, e-commerce add-to-cart flows.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 7 — Test Framework: TestNG or PyTest</summary>
+            <div class="module-content">
+              <ul>
+                <li>Test annotations, assertions</li>
+                <li>Data-driven testing, parameterization, test suites</li>
+                <li>Retry logic & reporting (HTML reports)</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Hands-on:</b>Build a suite of automated tests.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 8 — Framework Development</summary>
+            <div class="module-content">
+              <ul>
+                <li>Page Object Model (POM) & Page Factory</li>
+                <li>Utilities, test data management, configurations, logging</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Hands-on:</b> Build a full automation framework for a website.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 9 — API Testing & Automation</summary>
+            <div class="module-content">
+              <ul>
+                <li>REST basics, methods (GET/POST/PUT/DELETE), status codes</li>
+                <li>Postman basics; automating API tests with RestAssured or Python requests</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Hands-on:</b> Write automated API tests and validate responses.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 10 — CI/CD for Test Automation</summary>
+            <div class="module-content">
+              <ul>
+                <li>Concepts of CI/CD</li>
+                <li>Jenkins pipelines & integrating automated tests</li>
+                <li>Running tests on commits & reporting</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Outcome:</b> Understand how automated tests run in real companies.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Module 11 — Database Testing</summary>
+            <div class="module-content">
+              <ul>
+                <li>SQL basics, joins, validating backend data</li>
+                <li>Writing SQL inside test scripts</li>
+              </ul>
+              <div class="small" style="color:white;"><b>Hands-on:</b>validate user data after signup, orders after checkout.</div>
+            </div>
+          </details>
+
+          <details class="mb-3">
+            <summary class="module-title">Final Automation Project</summary>
+            <div class="module-content">
+              <ul>
+                <li>Web UI automation, API automation, DB checks</li>
+                <li>CI/CD pipeline integration, reports & logs</li>
+                <li>Modular framework and GitHub repository — becomes your resume project</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- CTA Buttons -->
+          <div class="d-flex gap-2 mt-4">
+            <a href="join-us.html" class="btn btn-hero-primary"><i class="fa-solid fa-user-plus me-2"></i> Apply / Enroll</a>
+            <a href="join-us.html" class="btn btn-outline-light"><i class="fa-solid fa-file-lines me-2"></i><b>Download Syllabus</b></a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- GALLERY -->
+      <div class="row mt-5">
+        <div class="col-lg-10">
+          <h3 class="section-title">Tools & Visuals</h3>
+          <p class="muted">Examples of test dashboards, automation flows and sample reports.</p>
+
+          <div class="small-gallery mt-3">
+            <img src="assets/img/workshops/qa1.jpg" alt="QA image 1">
+            <img src="assets/img/workshops/qa2.jpg" alt="QA image 2">
+            <img src="assets/img/workshops/qa3.jpg" alt="QA image 3">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2025 JCRM Technologies. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ once:true, duration:650 });
+  </script>
+</body>
+</html>

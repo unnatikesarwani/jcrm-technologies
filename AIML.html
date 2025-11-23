@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artificial Intelligence & Machine Learning — Course & Syllabus | JCRM Technologies</title>
+  <meta name="description" content="AI & Machine Learning course from basics to advance — 24-week syllabus with projects, deployment & MLOps." />
+
+  <!-- external CSS (site-wide) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* page-specific tweaks (kept minimal so main.css remains authoritative) */
+    .syllabus-summary { max-width: 78ch; margin: 0 auto 18px; color: var(--muted); text-align:left; }
+    .module-title { font-weight:700; color:var(--text); text-align:left; }
+    details > summary { cursor: pointer; padding: 10px 12px; border-radius: 10px; }
+    details[open] > summary { background: rgba(255,255,255,0.03); }
+    .module-content { padding: 12px 16px; color: var(--muted); text-align:left; }
+    .download-syllabus { display:inline-flex; align-items:center; gap:8px; }
+    .small-gallery { display:flex; gap:16px; flex-wrap:wrap; margin-top:12px; }
+    .small-gallery img { width:280px; border-radius:12px; object-fit:cover; }
+    .week-tag { font-weight:700; color:var(--accent-2); margin-bottom:8px; display:inline-block; }
+    .section-title { text-align:left; }
+    @media (max-width:768px) {
+      .small-gallery img { width:100%; max-width:320px; }
+      .syllabus-summary { text-align:left; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER (Zen-AI style) -->
+  <header class="custom-header">
+    <div class="container-fluid px-3">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid d-flex align-items-center justify-content-between px-0">
+          <div class="brand-left">
+            <a href="index.html" class="d-flex align-items-center" style="gap:8px; text-decoration:none; color:inherit;">
+              <img src="assets/img/logo-jcrm.jpg" alt="Logo" style="height:50px;width:50px;border-radius:50%;">
+              <span>JCRM TECHNOLOGIES</span>
+            </a>
+          </div>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        </div>
+      </nav>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-section">
+      <div class="container-fluid justify-content-center">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+          <ul class="navbar-nav text-center">
+            <li class="nav-item"><a class="nav-link" href="index.html">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="erp-solutions.html">ERP SOLUTIONS</a></li>
+            <li class="nav-item"><a class="nav-link" href="our-team.html">OUR TEAM</a></li>
+            <li class="nav-item"><a class="nav-link" href="workshop-upcoming.html">WORKSHOPS</a></li>
+            <li class="nav-item"><a class="nav-link" href="join-us.html">JOIN US</a></li>
+            <li class="nav-item"><a class="nav-link" href="about-us.html">ABOUT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="contact-us.html">CONTACT US</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION (Zen AI format) -->
+  <section class="hero section" aria-label="AI & ML course hero" data-aos="fade-up">
+    <div class="container text-center">
+      <span class="badge mb-3"><i class="fa-solid fa-brain me-1"></i> Artificial Intelligence & Machine Learning</span>
+
+      <h1>AI & Machine Learning — <strong>From Basic to Advance (24 weeks)</strong></h1>
+
+      <p class="syllabus-summary">
+        An end-to-end AI & ML program covering Python, data handling with NumPy & Pandas, visualization, statistics,
+        classical ML algorithms, deep learning (CNN/RNN), NLP, reinforcement learning, deployment, and MLOps —
+        finished by a capstone project and real-world deliverables.
+      </p>
+
+      <div class="hero-cta d-flex justify-content-center gap-3">
+        <a href="join-us.html" class="btn btn-hero-primary btn-lg">
+          <i class="fa-solid fa-user-plus me-2"></i> Enroll Now
+        </a>
+
+        <a class="btn btn-hero-ghost btn-lg download-syllabus" href="join-us.html">
+          <i class="fa-solid fa-file-arrow-down me-1"></i> Download Full Syllabus (PDF)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="section">
+    <div class="container">
+
+      <div class="row mb-4">
+        <div class="col-lg-12 text-start">
+          <p class="lead-muted mb-0">
+            Practical, project-driven curriculum with weekly assignments and mini-projects to build production-ready ML competencies.
+          </p>
+        </div>
+      </div>
+
+      <div class="row"><div class="col-lg-10">
+
+        <!-- WEEKLY MODULES (arranged as you provided) -->
+        <details open class="mb-3">
+          <summary class="module-title">WEEK 1 — Introduction to AI & ML</summary>
+          <div class="module-content">
+            <ul>
+              <li>Concepts: AI, ML, DL, Data Science overview</li>
+              <li>Types of ML: Supervised, Unsupervised, Reinforcement</li>
+              <li>Real-world applications (healthcare, finance, retail)</li>
+              <li>Setting up environment: Anaconda / Jupyter / Google Colab</li>
+              <li><strong>Outcome:</strong> Understand AI ecosystem and setup environment</li>
+              <li><strong>Tools:</strong> Jupyter Notebook, Google Colab</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 2 — Python Programming for ML</summary>
+          <div class="module-content">
+            <ul>
+              <li>Python syntax, data types, loops, functions</li>
+              <li>Lists, tuples, sets, dictionaries</li>
+              <li>File handling, exception handling</li>
+              <li><em>Assignment:</em> Write a Python script to analyze student grades</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 3 — Data Handling with NumPy & Pandas</summary>
+          <div class="module-content">
+            <ul>
+              <li>NumPy arrays, broadcasting, slicing</li>
+              <li>Pandas: reading CSV/Excel, merging, grouping, cleaning</li>
+              <li>Handling missing and duplicate data</li>
+              <li><em>Mini-project:</em> Analyze a dataset (sales or COVID data)</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 4 — Data Visualization</summary>
+          <div class="module-content">
+            <ul>
+              <li>Matplotlib and Seaborn for charts</li>
+              <li>Line, bar, pie, histogram, scatter, heatmaps</li>
+              <li>Plot styling and dashboards</li>
+              <li><em>Assignment:</em> Visualize trends using any public dataset</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 5 — Mathematics & Statistics for ML</summary>
+          <div class="module-content">
+            <ul>
+              <li>Descriptive statistics (mean, variance, std. deviation)</li>
+              <li>Probability distributions</li>
+              <li>Correlation & covariance</li>
+              <li>Hypothesis testing and p-values</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 6 — ML Fundamentals</summary>
+          <div class="module-content">
+            <ul>
+              <li>ML process: data → model → evaluation</li>
+              <li>Train/Test split, random state</li>
+              <li>Linear regression from scratch</li>
+              <li><em>Assignment:</em> Predict house prices using Linear Regression</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 7 — Regression Models</summary>
+          <div class="module-content">
+            <ul>
+              <li>Multiple Linear, Polynomial, Ridge & Lasso regression</li>
+              <li>Model performance metrics (R², RMSE, MAE)</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 8 — Classification Models</summary>
+          <div class="module-content">
+            <ul>
+              <li>Logistic Regression, KNN</li>
+              <li>Decision Tree, Random Forest</li>
+              <li>Confusion Matrix, ROC Curve, Precision-Recall</li>
+              <li><em>Mini-project:</em> Predict if a customer will buy a product</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 9 — Feature Engineering</summary>
+          <div class="module-content">
+            <ul>
+              <li>Data encoding (Label, One-hot)</li>
+              <li>Outlier detection and removal</li>
+              <li>Feature scaling: StandardScaler, MinMaxScaler</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 10 — Model Optimization</summary>
+          <div class="module-content">
+            <ul>
+              <li>Overfitting vs Underfitting</li>
+              <li>Cross-validation (K-Fold)</li>
+              <li>GridSearchCV, RandomizedSearchCV</li>
+              <li><em>Assignment:</em> Tune hyperparameters for a Random Forest model</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 11 — Unsupervised Learning</summary>
+          <div class="module-content">
+            <ul>
+              <li>K-Means Clustering</li>
+              <li>Hierarchical clustering</li>
+              <li>PCA for dimensionality reduction</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 12 — Ensemble Techniques</summary>
+          <div class="module-content">
+            <ul>
+              <li>Bagging & Boosting: Random Forest, XGBoost, AdaBoost</li>
+              <li><em>Mini-project:</em> Customer segmentation using clustering</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 13 — Neural Network Basics</summary>
+          <div class="module-content">
+            <ul>
+              <li>Neuron, weights, bias, activation functions</li>
+              <li>Forward propagation, loss, gradient descent</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 14 — Building ANN Models</summary>
+          <div class="module-content">
+            <ul>
+              <li>TensorFlow & Keras basics</li>
+              <li>Creating ANN for binary/multi-class classification</li>
+              <li>Dropout and regularization</li>
+              <li><em>Assignment:</em> Build an ANN for bank loan approval</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 15 — Convolutional Neural Networks (CNNs)</summary>
+          <div class="module-content">
+            <ul>
+              <li>Convolution, pooling, flattening layers</li>
+              <li>CNN architecture for image classification</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 16 — Transfer Learning</summary>
+          <div class="module-content">
+            <ul>
+              <li>Pretrained models: VGG16, ResNet, MobileNet</li>
+              <li><em>Mini-project:</em> Image classification using CNN</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 17 — NLP Basics</summary>
+          <div class="module-content">
+            <ul>
+              <li>Text preprocessing (tokenization, stemming, lemmatization)</li>
+              <li>Stopwords, Bag of Words, TF-IDF</li>
+              <li>NLTK, SpaCy libraries</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 18 — Sentiment Analysis</summary>
+          <div class="module-content">
+            <ul>
+              <li>Text classification with Naive Bayes & Logistic Regression</li>
+              <li>Word2Vec, GloVe embeddings</li>
+              <li><em>Mini-project:</em> Sentiment analysis on tweets</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 19 — Advanced NLP</summary>
+          <div class="module-content">
+            <ul>
+              <li>RNN, LSTM, GRU concepts</li>
+              <li>Transformers: BERT, GPT overview</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 20 — Reinforcement Learning (RL)</summary>
+          <div class="module-content">
+            <ul>
+              <li>RL concepts: Agent, Environment, Reward</li>
+              <li>Q-learning, Deep Q-Network</li>
+              <li><em>Assignment:</em> Simulate a simple RL agent</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 21 — Model Deployment</summary>
+          <div class="module-content">
+            <ul>
+              <li>Save models (Pickle/Joblib)</li>
+              <li>Flask / FastAPI model APIs</li>
+              <li>Streamlit dashboard for model visualization</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEK 22 — MLOps Introduction</summary>
+          <div class="module-content">
+            <ul>
+              <li>Version control (Git, GitHub)</li>
+              <li>Model tracking (MLflow)</li>
+              <li>Intro to Docker for containerization</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="mb-3">
+          <summary class="module-title">WEEKS 23–24 — Capstone Project & Presentation</summary>
+          <div class="module-content">
+            <ul>
+              <li>Choose one project:</li>
+              <li>1. Customer churn prediction</li>
+              <li>2. Image classification web app</li>
+              <li>3. Sales forecasting dashboard</li>
+              <li>4. Sentiment analysis using LSTM</li>
+              <li><strong>Deliverables:</strong> Source code (GitHub), Streamlit/Flask app demo, Project presentation</li>
+            </ul>
+          </div>
+        </details>
+
+        <!-- CTA Buttons -->
+        <div class="d-flex gap-2 mt-4">
+          <a href="join-us.html" class="btn btn-hero-primary"><i class="fa-solid fa-user-plus me-2"></i> Apply / Enroll</a>
+          <a href="join-us.html" class="btn btn-outline-light"><i class="fa-solid fa-file-lines me-2"></i> Download Syllabus</a>
+        </div>
+
+      </div></div>
+
+      <!-- GALLERY -->
+      <div class="row mt-5">
+        <div class="col-lg-10">
+          <h3 class="section-title">Tools & Visuals</h3>
+          <p class="muted">Notebook examples, model visualizations, and deployment screenshots from the program.</p>
+
+          <div class="small-gallery mt-3">
+            <img src="assets/img/fullstack/full stack advance s.jpg" alt="AI/ML visual 1">
+            <img src="assets/img/chatbot/chatbot gallery 1.jpg" alt="AI/ML visual 2">
+            <img src="assets/img/fullstack/full stack advance 1.jpg" alt="AI/ML visual 3">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer text-center">
+    <div class="container">
+      <p>&copy; 2025 JCRM Technologies. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script> AOS.init({ once:true, duration:650 }); </script>
+</body>
+</html>
